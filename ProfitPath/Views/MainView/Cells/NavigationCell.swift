@@ -1,5 +1,5 @@
 //
-//  MeditationCell.swift
+//  NavigationCell.swift
 //  ProfitPath
 //
 //  Created by Jaspreet Malak on 3/23/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MeditationCell: View {
+struct NavigationCell: View {
     let viewModel: MeditationModel
     
     var body: some View {
@@ -35,6 +35,8 @@ struct MeditationCell: View {
                 Spacer()
             }
             Image(viewModel.image)
+                .resizable()
+                .frame(width: 48, height: 48)
                 .padding(.bottom)
         }
         .background(viewModel.background)
@@ -43,7 +45,7 @@ struct MeditationCell: View {
 }
 
 #Preview {
-    MeditationCell(viewModel: MeditationModel(text: "Reflection",
+    NavigationCell(viewModel: MeditationModel(text: "Reflection",
                                               image: .reflection,
                                               background: .blueMain,
                                               time: 6, index: 1))

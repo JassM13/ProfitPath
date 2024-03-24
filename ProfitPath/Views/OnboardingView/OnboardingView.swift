@@ -43,13 +43,6 @@ struct OnboardingView: View {
                         Image(.onboarding)
                         Spacer()
                     }*/
-                    /*NavigationLink(
-                        destination: MainView(viewModel: MenuViewModel()),
-                        isActive: $isMainViewActive,
-                        label: {
-                            EmptyView()
-                        }
-                    )*/
                     Spacer()
                     HStack {
                         Spacer()
@@ -66,7 +59,7 @@ struct OnboardingView: View {
                         .frame(width: 64, height: 64)
                         Spacer()
                     }
-                    .navigationDestination(isPresented: $isMainViewActive) {  // Use navigationDestination
+                    .navigationDestination(isPresented: $isMainViewActive) {
                                     MainView(viewModel: MenuViewModel())
                                 }
                 }
