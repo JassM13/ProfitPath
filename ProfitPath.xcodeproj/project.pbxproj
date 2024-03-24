@@ -8,20 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		C64DE0EE2BAFCFFA00078997 /* ProfitPathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE0ED2BAFCFFA00078997 /* ProfitPathApp.swift */; };
-		C64DE0F02BAFCFFA00078997 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE0EF2BAFCFFA00078997 /* ContentView.swift */; };
-		C64DE0F22BAFCFFA00078997 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE0F12BAFCFFA00078997 /* Item.swift */; };
 		C64DE0F42BAFCFFD00078997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C64DE0F32BAFCFFD00078997 /* Assets.xcassets */; };
 		C64DE0F82BAFCFFD00078997 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C64DE0F72BAFCFFD00078997 /* Preview Assets.xcassets */; };
+		C64DE1012BAFD12A00078997 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1002BAFD12A00078997 /* OnboardingView.swift */; };
+		C64DE1042BAFD16B00078997 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1032BAFD16B00078997 /* MenuView.swift */; };
+		C64DE1062BAFD19D00078997 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1052BAFD19D00078997 /* MenuViewModel.swift */; };
+		C64DE1092BAFD1D700078997 /* MeditationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1082BAFD1D700078997 /* MeditationModel.swift */; };
+		C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE10B2BAFD1FF00078997 /* CategoryCell.swift */; };
+		C64DE10E2BAFD22800078997 /* MeditationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE10D2BAFD22800078997 /* MeditationCell.swift */; };
+		C64DE1112BAFD26600078997 /* MeditationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1102BAFD26600078997 /* MeditationDetailViewModel.swift */; };
+		C64DE1132BAFD28800078997 /* MeditationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1122BAFD28800078997 /* MeditationDetailView.swift */; };
+		C64DE1162BAFD2BE00078997 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1152BAFD2BE00078997 /* CircleView.swift */; };
+		C64DE1182BAFD2E300078997 /* MusicTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1172BAFD2E300078997 /* MusicTimelineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C64DE0EA2BAFCFFA00078997 /* ProfitPath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProfitPath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64DE0ED2BAFCFFA00078997 /* ProfitPathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitPathApp.swift; sourceTree = "<group>"; };
-		C64DE0EF2BAFCFFA00078997 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		C64DE0F12BAFCFFA00078997 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C64DE0F32BAFCFFD00078997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C64DE0F52BAFCFFD00078997 /* ProfitPath.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProfitPath.entitlements; sourceTree = "<group>"; };
 		C64DE0F72BAFCFFD00078997 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C64DE1002BAFD12A00078997 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		C64DE1032BAFD16B00078997 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		C64DE1052BAFD19D00078997 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		C64DE1082BAFD1D700078997 /* MeditationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationModel.swift; sourceTree = "<group>"; };
+		C64DE10B2BAFD1FF00078997 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		C64DE10D2BAFD22800078997 /* MeditationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationCell.swift; sourceTree = "<group>"; };
+		C64DE1102BAFD26600078997 /* MeditationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDetailViewModel.swift; sourceTree = "<group>"; };
+		C64DE1122BAFD28800078997 /* MeditationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDetailView.swift; sourceTree = "<group>"; };
+		C64DE1152BAFD2BE00078997 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		C64DE1172BAFD2E300078997 /* MusicTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTimelineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +70,8 @@
 		C64DE0EC2BAFCFFA00078997 /* ProfitPath */ = {
 			isa = PBXGroup;
 			children = (
+				C64DE0FE2BAFD0C600078997 /* Views */,
 				C64DE0ED2BAFCFFA00078997 /* ProfitPathApp.swift */,
-				C64DE0EF2BAFCFFA00078997 /* ContentView.swift */,
-				C64DE0F12BAFCFFA00078997 /* Item.swift */,
 				C64DE0F32BAFCFFD00078997 /* Assets.xcassets */,
 				C64DE0F52BAFCFFD00078997 /* ProfitPath.entitlements */,
 				C64DE0F62BAFCFFD00078997 /* Preview Content */,
@@ -70,6 +85,71 @@
 				C64DE0F72BAFCFFD00078997 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C64DE0FE2BAFD0C600078997 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C64DE10F2BAFD25500078997 /* DetailedView */,
+				C64DE1022BAFD15700078997 /* MainView */,
+				C64DE0FF2BAFD0E900078997 /* OnboardingView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C64DE0FF2BAFD0E900078997 /* OnboardingView */ = {
+			isa = PBXGroup;
+			children = (
+				C64DE1002BAFD12A00078997 /* OnboardingView.swift */,
+			);
+			path = OnboardingView;
+			sourceTree = "<group>";
+		};
+		C64DE1022BAFD15700078997 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				C64DE10A2BAFD1F100078997 /* Cells */,
+				C64DE1072BAFD1BC00078997 /* Model */,
+				C64DE1032BAFD16B00078997 /* MenuView.swift */,
+				C64DE1052BAFD19D00078997 /* MenuViewModel.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		C64DE1072BAFD1BC00078997 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C64DE1082BAFD1D700078997 /* MeditationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C64DE10A2BAFD1F100078997 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C64DE10B2BAFD1FF00078997 /* CategoryCell.swift */,
+				C64DE10D2BAFD22800078997 /* MeditationCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C64DE10F2BAFD25500078997 /* DetailedView */ = {
+			isa = PBXGroup;
+			children = (
+				C64DE1142BAFD2B100078997 /* Views */,
+				C64DE1102BAFD26600078997 /* MeditationDetailViewModel.swift */,
+				C64DE1122BAFD28800078997 /* MeditationDetailView.swift */,
+			);
+			path = DetailedView;
+			sourceTree = "<group>";
+		};
+		C64DE1142BAFD2B100078997 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C64DE1152BAFD2BE00078997 /* CircleView.swift */,
+				C64DE1172BAFD2E300078997 /* MusicTimelineView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +222,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C64DE0F02BAFCFFA00078997 /* ContentView.swift in Sources */,
-				C64DE0F22BAFCFFA00078997 /* Item.swift in Sources */,
+				C64DE1162BAFD2BE00078997 /* CircleView.swift in Sources */,
+				C64DE10E2BAFD22800078997 /* MeditationCell.swift in Sources */,
+				C64DE1042BAFD16B00078997 /* MenuView.swift in Sources */,
+				C64DE1012BAFD12A00078997 /* OnboardingView.swift in Sources */,
+				C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */,
+				C64DE1092BAFD1D700078997 /* MeditationModel.swift in Sources */,
+				C64DE1062BAFD19D00078997 /* MenuViewModel.swift in Sources */,
+				C64DE1182BAFD2E300078997 /* MusicTimelineView.swift in Sources */,
+				C64DE1132BAFD28800078997 /* MeditationDetailView.swift in Sources */,
 				C64DE0EE2BAFCFFA00078997 /* ProfitPathApp.swift in Sources */,
+				C64DE1112BAFD26600078997 /* MeditationDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +366,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -316,6 +405,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

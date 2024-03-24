@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct CategoryCell: View {
+    let text: String
+    let isSelected: Bool
+    let action: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            action()
+        }) {
+            Text(text)
+                .foregroundColor(isSelected ? Color.white : Color.black)
+                .padding(10)
+                .background(isSelected ? Color.utility : Color.clear)
+                .cornerRadius(16)
+        }
     }
-}
-
-#Preview {
-    CategoryCell()
 }
