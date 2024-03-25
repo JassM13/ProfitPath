@@ -67,7 +67,7 @@ struct MainView: View {
 func contentView(for category: String?) -> some View {
     switch category {
     case "Dashboard":
-        DashboardView().background(Color.blue)
+        DashboardView()
     case "Performance":
         PerformanceView().background(Color.green)
     case "Journal":

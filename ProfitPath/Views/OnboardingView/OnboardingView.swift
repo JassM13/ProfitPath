@@ -15,13 +15,15 @@ struct OnboardingView: View {
             Spacer(minLength: 50)
             ZStack {
                 Circle()
-                    .frame(width: 280, height: 280)
+                    .frame(width: 140, height: 140)
                     .foregroundColor(.orangeMain)
+                    .opacity(0.6)
                     .offset(x: 140, y: -350)
                 
                 Circle()
                     .frame(width: 495, height: 495)
                     .foregroundColor(.blueMain)
+                    .opacity(0.6)
                     .offset(x: 0, y: 300)
                 
                 VStack(alignment: .leading) {
