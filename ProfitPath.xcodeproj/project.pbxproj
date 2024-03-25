@@ -16,10 +16,6 @@
 		C64DE1092BAFD1D700078997 /* MeditationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1082BAFD1D700078997 /* MeditationModel.swift */; };
 		C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE10B2BAFD1FF00078997 /* CategoryCell.swift */; };
 		C64DE10E2BAFD22800078997 /* NavigationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE10D2BAFD22800078997 /* NavigationCell.swift */; };
-		C64DE1112BAFD26600078997 /* MeditationDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1102BAFD26600078997 /* MeditationDetailViewModel.swift */; };
-		C64DE1132BAFD28800078997 /* MeditationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1122BAFD28800078997 /* MeditationDetailView.swift */; };
-		C64DE1162BAFD2BE00078997 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1152BAFD2BE00078997 /* CircleView.swift */; };
-		C64DE1182BAFD2E300078997 /* MusicTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1172BAFD2E300078997 /* MusicTimelineView.swift */; };
 		C6A5BF852BAFF544005B68CF /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF842BAFF544005B68CF /* DashboardView.swift */; };
 		C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF872BAFF593005B68CF /* PerformanceView.swift */; };
 		C6A5BF8B2BB0027C005B68CF /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8A2BB0027C005B68CF /* JournalView.swift */; };
@@ -38,10 +34,6 @@
 		C64DE1082BAFD1D700078997 /* MeditationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationModel.swift; sourceTree = "<group>"; };
 		C64DE10B2BAFD1FF00078997 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		C64DE10D2BAFD22800078997 /* NavigationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCell.swift; sourceTree = "<group>"; };
-		C64DE1102BAFD26600078997 /* MeditationDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDetailViewModel.swift; sourceTree = "<group>"; };
-		C64DE1122BAFD28800078997 /* MeditationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationDetailView.swift; sourceTree = "<group>"; };
-		C64DE1152BAFD2BE00078997 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
-		C64DE1172BAFD2E300078997 /* MusicTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTimelineView.swift; sourceTree = "<group>"; };
 		C6A5BF842BAFF544005B68CF /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		C6A5BF872BAFF593005B68CF /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		C6A5BF8A2BB0027C005B68CF /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
@@ -102,7 +94,6 @@
 				C6A5BF892BB0026B005B68CF /* JournalView */,
 				C6A5BF862BAFF56E005B68CF /* PerformanceView */,
 				C6A5BF832BAFF52D005B68CF /* DashboardView */,
-				C64DE10F2BAFD25500078997 /* DetailedView */,
 				C64DE1022BAFD15700078997 /* MainView */,
 				C64DE0FF2BAFD0E900078997 /* OnboardingView */,
 			);
@@ -143,25 +134,6 @@
 				C64DE10D2BAFD22800078997 /* NavigationCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		C64DE10F2BAFD25500078997 /* DetailedView */ = {
-			isa = PBXGroup;
-			children = (
-				C64DE1142BAFD2B100078997 /* Views */,
-				C64DE1102BAFD26600078997 /* MeditationDetailViewModel.swift */,
-				C64DE1122BAFD28800078997 /* MeditationDetailView.swift */,
-			);
-			path = DetailedView;
-			sourceTree = "<group>";
-		};
-		C64DE1142BAFD2B100078997 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C64DE1152BAFD2BE00078997 /* CircleView.swift */,
-				C64DE1172BAFD2E300078997 /* MusicTimelineView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		C6A5BF832BAFF52D005B68CF /* DashboardView */ = {
@@ -266,7 +238,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C64DE1162BAFD2BE00078997 /* CircleView.swift in Sources */,
 				C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */,
 				C6A5BF852BAFF544005B68CF /* DashboardView.swift in Sources */,
 				C64DE10E2BAFD22800078997 /* NavigationCell.swift in Sources */,
@@ -276,11 +247,8 @@
 				C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */,
 				C64DE1092BAFD1D700078997 /* MeditationModel.swift in Sources */,
 				C64DE1062BAFD19D00078997 /* MenuViewModel.swift in Sources */,
-				C64DE1182BAFD2E300078997 /* MusicTimelineView.swift in Sources */,
-				C64DE1132BAFD28800078997 /* MeditationDetailView.swift in Sources */,
 				C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */,
 				C64DE0EE2BAFCFFA00078997 /* ProfitPathApp.swift in Sources */,
-				C64DE1112BAFD26600078997 /* MeditationDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
