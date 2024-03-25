@@ -31,8 +31,25 @@ struct MainView: View {
                     Group {
                         if let category = viewModel.selectedCategory {
                             contentView(for: category)
-                                //.navigationTitle(category)
-                                //.navigationBarTitleDisplayMode(.inline)
+                                .navigationBarItems(
+                                    leading: HStack {
+                                        Image(.logo)
+                                            .resizable()
+                                            .frame(width: 48, height: 48)
+                                            .cornerRadius(20)
+                                        Text("Hi, Malak")
+                                            .fontWeight(.medium)
+                                            .font(.system(size: 24))
+                                    },
+                                    trailing: Button(action: {
+                                        print("Navigation button tapped")
+                                    }) {
+                                        Image(.list)
+                                    }
+                                )
+                                .navigationBarBackButtonHidden(true)
+                                .navigationTitle(category)
+                                .navigationBarTitleDisplayMode(.inline)
                         } else {
                             Text("Select a Category")
                                 .foregroundColor(.gray)
@@ -40,22 +57,7 @@ struct MainView: View {
                     }
                 }
             }
-            .navigationBarItems(
-                leading: HStack {
-                    Image(.logo)
-                        .resizable()
-                        .frame(width: 48, height: 48)
-                    Text("Hi, Malak")
-                        .fontWeight(.medium)
-                        .font(.system(size: 24))
-                },
-                trailing: Button(action: {
-                    print("Navigation button tapped")
-                }) {
-                    Image(.list)
-                }
-            )
-            .navigationBarBackButtonHidden(true)
+            
         }
     }
 }
