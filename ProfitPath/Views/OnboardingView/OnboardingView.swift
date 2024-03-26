@@ -12,21 +12,13 @@ struct OnboardingView: View {
     
     var body: some View {
         NavigationStack {
-            Spacer(minLength: 50)
             ZStack {
-                Circle()
-                    .frame(width: 140, height: 140)
-                    .foregroundColor(.orangeMain)
-                    .opacity(0.6)
-                    .offset(x: 140, y: -350)
-                
-                Circle()
-                    .frame(width: 495, height: 495)
-                    .foregroundColor(.blueMain)
-                    .opacity(0.6)
-                    .offset(x: 0, y: 300)
-                
                 VStack(alignment: .leading) {
+                    Image(.logo)
+                        .resizable()
+                        .frame(width: 396, height: 396)
+                        .foregroundColor(.blueMain)
+                        .opacity(0.6)
                     Text("ProfitPath")
                         .fontWeight(.bold)
                         .font(.system(size: 28))
@@ -37,29 +29,27 @@ struct OnboardingView: View {
                     Text("Automated Futures Journal \nand Notes")
                         .fontWeight(.bold)
                         .padding(.leading, 24)
-                        .font(.system(size: 40))
+                        .font(.system(size: 36))
                         .padding(.leading, 50)
                     
-                    /*HStack {
-                        Spacer()
-                        Image(.onboarding)
-                        Spacer()
-                    }*/
                     Spacer()
                     HStack {
                         Spacer()
                         Button(action: {
                             self.isMainViewActive = true
                         }) {
-                            Image(.arrowRight)
-                                .foregroundColor(Color.red)
-                                .padding()
-                                //.background(Color.white)
-                                .foregroundColor(Color.white)
-                                .cornerRadius(0)
+                            HStack {
+                                Text("Start")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                Image(systemName: "arrow.right") // System image for arrow
+                                    .foregroundColor(.white)
+                            }
+                            .padding()
+                            .background(Color.gray) // Your desired background color
+                            .cornerRadius(15) // Adjust corner radius as needed
                         }
-                        .frame(width: 64, height: 64)
-                        Spacer()
+                        .padding(.horizontal)
                     }
                     .navigationDestination(isPresented: $isMainViewActive) {
                                     MainView(viewModel: MenuViewModel())

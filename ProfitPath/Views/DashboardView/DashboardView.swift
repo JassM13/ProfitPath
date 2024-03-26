@@ -9,65 +9,60 @@ import SwiftUI
 import Charts
 
 struct DashboardView: View {
-    var body: some View {
-        ScrollView { // Use a ScrollView for multiple charts
-            ZStack() {
-                HStack(spacing: 20) {
-                    LineChartCard(title: "Profits",
-                                  data: sampleRevenueData)
-
-                    LineChartCard(title: "R:R",
-                                  data: sampleExpenseData)
-                }
-                
-            }
-            .padding()
-        }
-    }
-}
-
-// Sample dataset
-let sampleRevenueData: [ChartData] = [
-    ChartData(date: Date.now.addingTimeInterval(-60*60*24*7), value: 1200),
-    ChartData(date: Date.now.addingTimeInterval(-60*60*24*6), value: 1550),
-    // ... more data points
-]
-let sampleExpenseData: [ChartData] = [
-    ChartData(date: Date.now.addingTimeInterval(-60*60*24*7), value: 850),
-    ChartData(date: Date.now.addingTimeInterval(-60*60*24*6), value: 700),
-    // ... more data points
-]
-
-// Reusable card for the charts
-struct LineChartCard: View {
-    let title: String
-    let data: [ChartData]
+    // Assuming your sample data is updated to include day and moneyValue
+    let samples: [Sample] = [
+        // Example data:
+        Sample(id: UUID(), day: 1, x: 0.5, y: 100, moneyValue: 100),
+        Sample(id: UUID(), day: 2, x: 0.2, y: 150, moneyValue: 150),
+        Sample(id: UUID(), day: 3, x: 0.8, y: 80, moneyValue: 80),
+        // ... add more data here
+    ]
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(title)
-                .font(.headline)
-
-            Chart(data) {
+        let paddedMaxValue = samples.map { $0.moneyValue }.max() ?? 0 * 1.1
+        Chart {
+            ForEach(samples) { sample in
                 LineMark(
-                    x: .value("Date", $0.date),
-                    y: .value("Value", $0.value)
+                    x: .value("Day", sample.day),
+                    y: .value("Money Value", sample.moneyValue)
                 )
-                .foregroundStyle(.blue) // Line color
+                .accessibilityLabel("\(sample.day)")
+                .accessibilityValue("\(sample.moneyValue)")
             }
-            .frame(height: 200)
+        }
+        .chartYAxis {
+            AxisMarks(position: .leading) { value in
+                //AxisGridLine()
+                AxisTick()
+                AxisValueLabel(format: .currency(code: "USD"))
+            }
+        }
+        .chartXAxis {
+            AxisMarks() { value in
+                //AxisGridLine()
+                AxisTick()
+                AxisValueLabel() // Default formatting will show the adjusted day
+            }
         }
         .padding()
-        .cornerRadius(10)
-        .shadow(radius: 5)
+        .background(.mainColors.secondary)
+        .clipShape(RoundedRectangle(cornerRadius: 15))
+        .frame(width: .infinity, height: 280)
+        .padding(.horizontal)
+        .navigationBarTitle("Profit Path", displayMode: .inline)
+        Spacer(minLength: 300)
+    }
+
+    struct Sample: Identifiable {
+        let id: UUID // Ensures unique identification
+        var day: Int
+        var x: Double // If not needed for the chart, you can remove this
+        var y: Double // If not needed for the chart, you can remove this
+        var moneyValue: Double
     }
 }
 
-struct ChartData: Identifiable {
-    let id = UUID()
-    let date: Date
-    let value: Double
-}
+
 
 #Preview {
     DashboardView()
