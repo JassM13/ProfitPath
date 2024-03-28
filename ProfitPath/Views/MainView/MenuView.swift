@@ -48,7 +48,7 @@ struct MainView: View {
                                     .resizable()
                                     .frame(width: 48, height: 48)
                                     .cornerRadius(20)
-                                Text("Hi, Malak")
+                                Text("EXPRESSTST291482")
                                     .fontWeight(.medium)
                                     .font(.system(size: 24))
                             },
