@@ -69,7 +69,7 @@ func contentView(for category: String?) -> some View {
     case "Dashboard":
         DashboardView()
     case "Performance":
-        PerformanceView().background(Color.green)
+        PerformanceView()
     case "Journal":
         JournalView().background(Color.yellow)
     case "Reports":
