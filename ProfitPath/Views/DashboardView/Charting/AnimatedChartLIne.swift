@@ -9,57 +9,67 @@ import SwiftUI
 import Charts
 
 struct AnimatedChartLine: View, Animatable {
-    var animatableData: Double
-
-    init(x: Double) {
-        self.animatableData = x
+    var animatableData: Date
+    
+    let samples: [DataPoint]
+    
+    init(samples: [DataPoint], date: Date) {
+        self.animatableData = date
+        self.samples = samples
+        self.animatableData = samples.last?.date ?? Date()
     }
-
-    let samples = stride(from: -1, through: 1, by: 0.01).map {
-        Sample(x: $0, y: pow($0, 3))
-    }
-
+    
     var body: some View {
         Chart {
             ForEach(samples) { sample in
                 LineMark(
-                    x: .value("x", sample.x),
-                    y: .value("y", sample.y)
+                    x: .value("Date", sample.date),
+                    y: .value("Value", sample.value)
                 )
-                .accessibilityLabel("\(sample.x)")
-                .accessibilityValue("\(sample.y)")
+                .accessibilityLabel("\(sample.date)")
+                .accessibilityValue("\(sample.value)")
             }
-
+            
             PointMark(
-                x: .value("x", animatableData),
-                y: .value("y", pow(animatableData, 3))
+                x: .value("Date", animatableData),
+                y: .value("Value", findValueForDate(date: animatableData))
             )
         }
         .accessibilityChartDescriptor(self)
         .chartXAxis(.hidden)
         .chartYAxis(.hidden)
     }
-
-    struct Sample: Identifiable {
-        var x: Double
-        var y: Double
-        var id: some Hashable { x }
+    
+    func findValueForDate(date: Date) -> Double {
+        // Implement logic to find the value for the given date
+        // from the sample data
+        return 0.0
     }
 }
 
 extension AnimatedChartLine: AXChartDescriptorRepresentable {
     func makeChartDescriptor() -> AXChartDescriptor {
-        let xAxis = AXNumericDataAxisDescriptor(title: "Position",
-                                                range: 1...1,
-                                                gridlinePositions: []) { String(format: "%.2f", $0) }
+        let minDate = samples.map { $0.date }.min()!
+        let maxDate = samples.map { $0.date }.max()!
+        let dateRange = minDate.timeIntervalSince1970...maxDate.timeIntervalSince1970
+        
+        let minValue = samples.map { $0.value }.min() ?? 0
+        let maxValue = samples.map { $0.value }.max() ?? 0
+        let valueRange = minValue...maxValue
+        
+        let xAxis = AXNumericDataAxisDescriptor(title: "Date",
+                                                range: dateRange,
+                                                gridlinePositions: []) { Date(timeIntervalSince1970: $0).formatted(date: .abbreviated, time: .omitted) }
+        
         let yAxis = AXNumericDataAxisDescriptor(title: "Value",
-                                                range: -1...1,
+                                                range: valueRange,
                                                 gridlinePositions: []) { String(format: "%.2f", $0) }
+        
         let series = AXDataSeriesDescriptor(name: "Data",
                                             isContinuous: true, dataPoints: samples.map {
-            .init(x: $0.x, y: $0.y)
-        })
-
+                                                .init(x: $0.date.timeIntervalSince1970, y: $0.value)
+                                            })
+        
         return AXChartDescriptor(title: "Animated Change in Data",
                                  summary: nil,
                                  xAxis: xAxis,
