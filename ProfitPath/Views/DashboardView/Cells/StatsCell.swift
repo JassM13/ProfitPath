@@ -8,23 +8,35 @@
 import SwiftUI
 
 struct StatsCell: View {
-    let title: String
-    let value: String
+    var icon: String
+    var iconColor: Color
+    var title: String
+    var value: String
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(title)
-                .font(.caption)
-            Text(value)
-                .font(.title3.bold())
+        HStack(spacing: 16) {
+            Image(systemName: icon)
+                .font(.system(size: 24))
+                .foregroundColor(iconColor)
+                .frame(width: 40, height: 40)
+                .background(iconColor.opacity(0.2))
+                .cornerRadius(6)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.headline)
+
+                Text(value)
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            }.dynamicTypeSize(.xSmall)
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.gray.opacity(0.2))
-        )}
+        .padding(.vertical, 8)
+        .background(Color(UIColor.systemBackground))
+        .cornerRadius(12)
+    }
 }
 
 #Preview {
-    StatsCell(title: "Profit", value: "50")
+    StatsCell(icon: "chart.line.uptrend.xyaxis", iconColor: Color.green, title: "Best-Day", value: "$1600")
 }

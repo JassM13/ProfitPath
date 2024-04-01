@@ -47,7 +47,7 @@ struct MainView: View {
                                 Image(.logo)
                                     .resizable()
                                     .frame(width: 48, height: 48)
-                                    .cornerRadius(20)
+                                    .cornerRadius(5)
                                 Text("EXPRESSTST291482")
                                     .fontWeight(.medium)
                                     .font(.system(size: 24))

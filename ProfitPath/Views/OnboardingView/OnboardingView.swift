@@ -41,12 +41,12 @@ struct OnboardingView: View {
                             HStack {
                                 Text("Start")
                                     .font(.headline)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.gray)
                                 Image(systemName: "arrow.right") // System image for arrow
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.gray)
                             }
                             .padding()
-                            .background(Color.gray) // Your desired background color
+                            .background(Color.gray.opacity(0.2)) // Your desired background color
                             .cornerRadius(15) // Adjust corner radius as needed
                         }
                         .padding(.horizontal)
