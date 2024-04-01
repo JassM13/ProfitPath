@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C61FB03E2BB5C78B00D8141A /* AnimatedChartLIne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FB03D2BB5C78B00D8141A /* AnimatedChartLIne.swift */; };
 		C61FB0412BB5CDDC00D8141A /* StatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FB0402BB5CDDC00D8141A /* StatsCell.swift */; };
 		C64DE0EE2BAFCFFA00078997 /* ProfitPathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE0ED2BAFCFFA00078997 /* ProfitPathApp.swift */; };
 		C64DE0F42BAFCFFD00078997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C64DE0F32BAFCFFD00078997 /* Assets.xcassets */; };
@@ -22,12 +21,12 @@
 		C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF872BAFF593005B68CF /* PerformanceView.swift */; };
 		C6A5BF8B2BB0027C005B68CF /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8A2BB0027C005B68CF /* JournalView.swift */; };
 		C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8D2BB0029C005B68CF /* ReportsView.swift */; };
-		C6FFC3F92BB73A3A00AEA5FF /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = C6FFC3F82BB73A3A00AEA5FF /* SwiftUICharts */; };
+		C6C4BCC42BBA68D20090E25A /* Spectra in Frameworks */ = {isa = PBXBuildFile; productRef = C6C4BCC32BBA68D20090E25A /* Spectra */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C61FB03D2BB5C78B00D8141A /* AnimatedChartLIne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedChartLIne.swift; sourceTree = "<group>"; };
 		C61FB0402BB5CDDC00D8141A /* StatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCell.swift; sourceTree = "<group>"; };
+		C632BEBF2BBA617800BBCFC8 /* Spectra */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Spectra; path = ../Spectra; sourceTree = "<group>"; };
 		C64DE0EA2BAFCFFA00078997 /* ProfitPath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProfitPath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64DE0ED2BAFCFFA00078997 /* ProfitPathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitPathApp.swift; sourceTree = "<group>"; };
 		C64DE0F32BAFCFFD00078997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,21 +49,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6FFC3F92BB73A3A00AEA5FF /* SwiftUICharts in Frameworks */,
+				C6C4BCC42BBA68D20090E25A /* Spectra in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C61FB03C2BB5C77500D8141A /* Charting */ = {
-			isa = PBXGroup;
-			children = (
-				C61FB03D2BB5C78B00D8141A /* AnimatedChartLIne.swift */,
-			);
-			path = Charting;
-			sourceTree = "<group>";
-		};
 		C61FB03F2BB5CDCB00D8141A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +67,7 @@
 		C64DE0E12BAFCFFA00078997 = {
 			isa = PBXGroup;
 			children = (
+				C632BEBF2BBA617800BBCFC8 /* Spectra */,
 				C64DE0EC2BAFCFFA00078997 /* ProfitPath */,
 				C64DE0EB2BAFCFFA00078997 /* Products */,
 			);
@@ -162,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				C61FB03F2BB5CDCB00D8141A /* Cells */,
-				C61FB03C2BB5C77500D8141A /* Charting */,
 				C6A5BF842BAFF544005B68CF /* DashboardView.swift */,
 			);
 			path = DashboardView;
@@ -209,7 +200,7 @@
 			);
 			name = ProfitPath;
 			packageProductDependencies = (
-				C6FFC3F82BB73A3A00AEA5FF /* SwiftUICharts */,
+				C6C4BCC32BBA68D20090E25A /* Spectra */,
 			);
 			productName = ProfitPath;
 			productReference = C64DE0EA2BAFCFFA00078997 /* ProfitPath.app */;
@@ -240,7 +231,7 @@
 			);
 			mainGroup = C64DE0E12BAFCFFA00078997;
 			packageReferences = (
-				C6FFC3F72BB73A3A00AEA5FF /* XCRemoteSwiftPackageReference "ChartView" */,
+				C6C4BCC22BBA68D20090E25A /* XCLocalSwiftPackageReference "../Spectra" */,
 			);
 			productRefGroup = C64DE0EB2BAFCFFA00078997 /* Products */;
 			projectDirPath = "";
@@ -276,7 +267,6 @@
 				C64DE1012BAFD12A00078997 /* OnboardingView.swift in Sources */,
 				C61FB0412BB5CDDC00D8141A /* StatsCell.swift in Sources */,
 				C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */,
-				C61FB03E2BB5C78B00D8141A /* AnimatedChartLIne.swift in Sources */,
 				C64DE1092BAFD1D700078997 /* MeditationModel.swift in Sources */,
 				C64DE1062BAFD19D00078997 /* MenuViewModel.swift in Sources */,
 				C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */,
@@ -502,22 +492,17 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		C6FFC3F72BB73A3A00AEA5FF /* XCRemoteSwiftPackageReference "ChartView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
-			requirement = {
-				kind = exactVersion;
-				version = "2.0.0-beta.2";
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		C6C4BCC22BBA68D20090E25A /* XCLocalSwiftPackageReference "../Spectra" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Spectra;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C6FFC3F82BB73A3A00AEA5FF /* SwiftUICharts */ = {
+		C6C4BCC32BBA68D20090E25A /* Spectra */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C6FFC3F72BB73A3A00AEA5FF /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
+			productName = Spectra;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

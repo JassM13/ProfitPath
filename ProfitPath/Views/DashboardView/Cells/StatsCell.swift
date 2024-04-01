@@ -18,12 +18,11 @@ struct StatsCell: View {
             Text(value)
                 .font(.title3.bold())
         }
-        .padding() // Provide padding within the cell
-        .background( // Add background
-            RoundedRectangle(cornerRadius: 10) // Choose your corner radius
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 10)
                 .fill(Color.gray.opacity(0.2))
-        )
-    }
+        )}
 }
 
 #Preview {
