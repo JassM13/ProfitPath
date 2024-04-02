@@ -30,19 +30,17 @@ struct DashboardView: View {
             .frame(height: UIScreen.main.bounds.height / 3.8)
 
             ZStack() {
-                    VStack {
-                        HStack() {
+                    HStack {
+                        VStack(alignment: .leading) {
                             StatsCell(icon: "graph-up", iconColor: Color.green, title: "Best Day", value: String(format: "$1600"))
-                            Spacer()
+                            
                             StatsCell(icon: "graph-down", iconColor: Color.red, title: "Worst Day", value: String(format: "$260"))
-                            Spacer()
                         }
+                        Spacer()
 
-                        HStack() {
+                        VStack(alignment: .leading) {
                             StatsCell(icon: "winrate", iconColor: Color.green, title: "WinRate", value: String(format: "$260"))
-                            Spacer()
                             StatsCell(icon: "R:R", iconColor: Color.red, title: "R:R", value: String(format: "2.2"))
-                            Spacer()
                         }
                     }
                     Spacer()

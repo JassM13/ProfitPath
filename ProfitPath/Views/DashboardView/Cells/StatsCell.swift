@@ -29,7 +29,7 @@ struct StatsCell: View {
                 Text(value)
                     .font(.subheadline)
                     .foregroundColor(.gray)
-            }.dynamicTypeSize(.xSmall)
+            }.dynamicTypeSize(.xLarge)
         }
         .padding(.vertical, 8)
         .background(Color(UIColor.systemBackground))
