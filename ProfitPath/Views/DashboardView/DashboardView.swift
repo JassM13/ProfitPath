@@ -13,7 +13,7 @@ struct DashboardView: View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.gray.opacity(0.05))
+                        .fill(Color.white.opacity(0.02))
                         .overlay(
                             SpectraView(data: [2, 17, 9, 23, 10],
                                         type: .curved,
@@ -33,16 +33,17 @@ struct DashboardView: View {
                     HStack {
                         VStack(alignment: .leading) {
                             StatsCell(icon: "graph-up", iconColor: Color.green, title: "Best Day", value: String(format: "$1600"))
-                            
-                            StatsCell(icon: "graph-down", iconColor: Color.red, title: "Worst Day", value: String(format: "$260"))
+                            StatsCell(icon: "winrate", iconColor: Color.green, title: "WinRate", value: String(format: "80%%"))
                         }
                         Spacer()
 
                         VStack(alignment: .leading) {
-                            StatsCell(icon: "winrate", iconColor: Color.green, title: "WinRate", value: String(format: "$260"))
+                            StatsCell(icon: "graph-down", iconColor: Color.red, title: "Worst Day", value: String(format: "$260"))
                             StatsCell(icon: "R:R", iconColor: Color.red, title: "R:R", value: String(format: "2.2"))
                         }
                     }
+                    .padding(.all)
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.01)))
                     Spacer()
             }
         }
