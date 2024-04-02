@@ -34,12 +34,14 @@ struct DashboardView: View {
                         VStack(alignment: .leading) {
                             StatsCell(icon: "graph-up", iconColor: Color.green, title: "Best Day", value: String(format: "$1600"))
                             StatsCell(icon: "winrate", iconColor: Color.green, title: "WinRate", value: String(format: "80%%"))
+                                .padding(.top, 5)
                         }
                         Spacer()
 
                         VStack(alignment: .leading) {
                             StatsCell(icon: "graph-down", iconColor: Color.red, title: "Worst Day", value: String(format: "$260"))
                             StatsCell(icon: "R:R", iconColor: Color.red, title: "R:R", value: String(format: "2.2"))
+                                .padding(.top, 5)
                         }
                     }
                     .padding(.all)
