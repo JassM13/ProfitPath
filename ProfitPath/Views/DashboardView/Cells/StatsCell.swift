@@ -15,8 +15,8 @@ struct StatsCell: View {
 
     var body: some View {
         HStack(spacing: 16) {
-            Image(systemName: icon)
-                .font(.system(size: 24))
+            Image(icon)
+                .font(.system(size: 26))
                 .foregroundColor(iconColor)
                 .frame(width: 40, height: 40)
                 .background(iconColor.opacity(0.2))
@@ -38,5 +38,5 @@ struct StatsCell: View {
 }
 
 #Preview {
-    StatsCell(icon: "chart.line.uptrend.xyaxis", iconColor: Color.green, title: "Best-Day", value: "$1600")
+    StatsCell(icon: "graph-up", iconColor: Color.green, title: "Best-Day", value: "$1600")
 }
