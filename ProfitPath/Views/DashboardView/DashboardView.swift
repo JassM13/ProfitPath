@@ -13,7 +13,7 @@ struct DashboardView: View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.white.opacity(0.02))
+                        .fill(Color.white.opacity(0.05))
                         .overlay(
                             SpectraView(data: [2, 17, 9, 23, 10],
                                         type: .curved,
@@ -29,6 +29,25 @@ struct DashboardView: View {
             }
             .frame(height: UIScreen.main.bounds.height / 3.8)
 
+            HStack {
+                Text("Total Profit")
+                    .font(.headline)
+                    .foregroundColor(.gray)
+                
+                Spacer()
+                
+                Text("$13,000")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .foregroundColor(.green)
+            }
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.gray.opacity(0.025))
+                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+            )
+            
             ZStack() {
                     HStack {
                         VStack(alignment: .leading) {
@@ -39,14 +58,32 @@ struct DashboardView: View {
                         Spacer()
 
                         VStack(alignment: .leading) {
-                            StatsCell(icon: "graph-down", iconColor: Color.red, title: "Worst Day", value: String(format: "$260"))
+                            StatsCell(icon: "graph-down", iconColor: Color.red, title: "Worst Day", value: String(format: "-$260"))
                             StatsCell(icon: "R:R", iconColor: Color.red, title: "R:R", value: String(format: "2.2"))
                                 .padding(.top, 5)
                         }
                     }
                     .padding(.all)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.01)))
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.025)))
                     Spacer()
+            }
+            
+            ZStack {
+                ProgressView(value: 1850, total: 3000, label: {
+                    Text("Profit Goal")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }, currentValueLabel: {
+                    Text("1850/3000")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                })
+                .padding(.all)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.gray.opacity(0.025))
+                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                )
             }
         }
         .padding([.horizontal])
