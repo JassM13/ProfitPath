@@ -44,7 +44,7 @@ struct DashboardView: View {
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(Color.gray.opacity(0.025))
+                    .fill(Color.white.opacity(0.025))
                     .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
             )
             
@@ -81,8 +81,7 @@ struct DashboardView: View {
                 .padding(.all)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.gray.opacity(0.025))
-                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                        .fill(Color.white.opacity(0.025))
                 )
             }
         }
