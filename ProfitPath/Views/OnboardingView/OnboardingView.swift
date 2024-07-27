@@ -52,7 +52,7 @@ struct OnboardingView: View {
                         .padding(.horizontal)
                     }
                     .navigationDestination(isPresented: $isMainViewActive) {
-                                    MainView(viewModel: MenuViewModel())
+                                    MainView()
                                 }
                 }
             }

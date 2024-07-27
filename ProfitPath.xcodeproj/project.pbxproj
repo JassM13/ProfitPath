@@ -13,9 +13,8 @@
 		C64DE0F82BAFCFFD00078997 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C64DE0F72BAFCFFD00078997 /* Preview Assets.xcassets */; };
 		C64DE1012BAFD12A00078997 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1002BAFD12A00078997 /* OnboardingView.swift */; };
 		C64DE1042BAFD16B00078997 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1032BAFD16B00078997 /* MenuView.swift */; };
-		C64DE1062BAFD19D00078997 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1052BAFD19D00078997 /* MenuViewModel.swift */; };
-		C64DE1092BAFD1D700078997 /* MeditationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1082BAFD1D700078997 /* MeditationModel.swift */; };
 		C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE10B2BAFD1FF00078997 /* CategoryCell.swift */; };
+		C64E26FA2C54A01D00E280CE /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E26F92C54A01D00E280CE /* NavigationController.swift */; };
 		C6A5BF852BAFF544005B68CF /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF842BAFF544005B68CF /* DashboardView.swift */; };
 		C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF872BAFF593005B68CF /* PerformanceView.swift */; };
 		C6A5BF8B2BB0027C005B68CF /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8A2BB0027C005B68CF /* JournalView.swift */; };
@@ -33,9 +32,8 @@
 		C64DE0F72BAFCFFD00078997 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C64DE1002BAFD12A00078997 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C64DE1032BAFD16B00078997 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
-		C64DE1052BAFD19D00078997 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
-		C64DE1082BAFD1D700078997 /* MeditationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationModel.swift; sourceTree = "<group>"; };
 		C64DE10B2BAFD1FF00078997 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		C64E26F92C54A01D00E280CE /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		C6A5BF842BAFF544005B68CF /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		C6A5BF872BAFF593005B68CF /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		C6A5BF8A2BB0027C005B68CF /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
@@ -82,6 +80,7 @@
 		C64DE0EC2BAFCFFA00078997 /* ProfitPath */ = {
 			isa = PBXGroup;
 			children = (
+				C64E26F82C549FF000E280CE /* ViewControllers */,
 				C64DE0FE2BAFD0C600078997 /* Views */,
 				C64DE0ED2BAFCFFA00078997 /* ProfitPathApp.swift */,
 				C64DE0F32BAFCFFD00078997 /* Assets.xcassets */,
@@ -124,19 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				C64DE10A2BAFD1F100078997 /* Cells */,
-				C64DE1072BAFD1BC00078997 /* Model */,
 				C64DE1032BAFD16B00078997 /* MenuView.swift */,
-				C64DE1052BAFD19D00078997 /* MenuViewModel.swift */,
 			);
 			path = MainView;
-			sourceTree = "<group>";
-		};
-		C64DE1072BAFD1BC00078997 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C64DE1082BAFD1D700078997 /* MeditationModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C64DE10A2BAFD1F100078997 /* Cells */ = {
@@ -145,6 +134,14 @@
 				C64DE10B2BAFD1FF00078997 /* CategoryCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		C64E26F82C549FF000E280CE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C64E26F92C54A01D00E280CE /* NavigationController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		C6A5BF832BAFF52D005B68CF /* DashboardView */ = {
@@ -257,14 +254,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */,
+				C64E26FA2C54A01D00E280CE /* NavigationController.swift in Sources */,
 				C6A5BF852BAFF544005B68CF /* DashboardView.swift in Sources */,
 				C64DE1042BAFD16B00078997 /* MenuView.swift in Sources */,
 				C6A5BF8B2BB0027C005B68CF /* JournalView.swift in Sources */,
 				C64DE1012BAFD12A00078997 /* OnboardingView.swift in Sources */,
 				C61FB0412BB5CDDC00D8141A /* StatsCell.swift in Sources */,
 				C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */,
-				C64DE1092BAFD1D700078997 /* MeditationModel.swift in Sources */,
-				C64DE1062BAFD19D00078997 /* MenuViewModel.swift in Sources */,
 				C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */,
 				C64DE0EE2BAFCFFA00078997 /* ProfitPathApp.swift in Sources */,
 			);
@@ -419,7 +415,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.malak.ProfitPath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,7 +455,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.malak.ProfitPath;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

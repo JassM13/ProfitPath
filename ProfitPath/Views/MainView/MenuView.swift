@@ -8,80 +8,66 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject var viewModel: MenuViewModel
+    @ObservedObject var navigationController = NavigationController.shared
     
     var body: some View {
         NavigationView {
-            NavigationStack(path: $viewModel.navigationPath) {
-                GeometryReader { geometry in
-                    VStack(spacing: 0) {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            LazyHGrid(rows: [GridItem(.flexible())], spacing: 16) {
-                                ForEach(viewModel.catergories, id: \.self) { item in
-                                    NavigationLink(value: item) {
-                                        CategoryCell(text: item, isSelected: viewModel.selectedCategory == item) {
-                                            viewModel.selectedCategory = item
-                                        }
-                                    }
-                                }
+            VStack(spacing: 0) {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHGrid(rows: [GridItem(.flexible())], spacing: 16) {
+                        HStack {
+                            Button(action: {
+                                navigationController.updateCurrentView(AnyView(DashboardView()), viewName: "Dashboard")
+                            }) {
+                                CategoryCell(text: "Dashboard", isSelected: navigationController.viewName == "Dashboard")
                             }
-                            .padding()
-                        }
-                        .frame(height: 80)
-                        
-                        Group {
-                            if let category = viewModel.selectedCategory {
-                                contentView(for: category)
-                            } else {
-                                Text("Select a Category")
-                                    .foregroundColor(.gray)
+                            Button(action: {
+                                navigationController.updateCurrentView(AnyView(PerformanceView()), viewName: "Performance")
+                            }) {
+                                CategoryCell(text: "Performance", isSelected: navigationController.viewName == "Performance")
+                            }
+                            Button(action: {
+                                navigationController.updateCurrentView(AnyView(JournalView()), viewName: "Journal")
+                            }) {
+                                CategoryCell(text: "Journal", isSelected: navigationController.viewName == "Journal")
+                            }
+                            Button(action: {
+                                navigationController.updateCurrentView(AnyView(ReportsView()), viewName: "Reports")
+                            }) {
+                                CategoryCell(text: "Reports", isSelected: navigationController.viewName == "Reports")
                             }
                         }
                     }
-                    
+                    .padding()
+                }
+                .frame(height: 80)
+                
+                if let currentView = navigationController.currentView {
+                    currentView
                 }
                 
+                Spacer()
             }
-                        .navigationBarItems(
-                            leading: HStack {
-                                Image(.logo)
-                                    .resizable()
-                                    .frame(width: 48, height: 48)
-                                    .cornerRadius(5)
-                                Text("EXPRESSTST291482")
-                                    .fontWeight(.medium)
-                                    .font(.system(size: 24))
-                            },
-                            trailing: Button(action: {
-                                print("Navigation button tapped")
-                            }) {
-                                Image(.list)
-                            }
-                        )
+            .navigationBarItems(
+                leading: HStack {
+                    Image(.logo)
+                        .resizable()
+                        .frame(width: 48, height: 48)
+                        .cornerRadius(5)
+                    Text("EXPRESSTST291482")
+                        .fontWeight(.medium)
+                        .font(.system(size: 24))
+                },
+                trailing: Button(action: {
+                    print("Navigation button tapped")
+                }) {
+                    Image(.list)
                 }
-        .navigationBarBackButtonHidden(true)
-    }
-}
-
-@ViewBuilder
-func contentView(for category: String?) -> some View {
-    switch category {
-    case "Dashboard":
-        DashboardView()
-    case "Performance":
-        PerformanceView()
-    case "Journal":
-        JournalView().background(Color.yellow)
-    case "Reports":
-        ReportsView().background(Color.orange)
-    default:
-        Text("Select a Category").background(Color.gray)
+            )
+        }.navigationBarBackButtonHidden(true)
     }
 }
 
 #Preview {
-    MainView(viewModel: MenuViewModel())
-    /*NavigationView {
-        MainView(viewModel: MenuViewModel())
-    }*/
+    MainView()
 }
