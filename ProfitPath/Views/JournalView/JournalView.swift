@@ -8,23 +8,26 @@
 import SwiftUI
 
 struct JournalView: View {
+    @StateObject private var tradeJournal = TradeJournal.shared
+    
     let currentDate = Date()
     let calendar = Calendar.current
     @State private var selectedMonth = Date()
     @State private var selectedDate: Date? = nil
     
-    let profitData: [Date: Double] = [
-        // Sample data - replace with your actual data
-        Calendar.current.date(from: DateComponents(year: 2024, month: 7, day: 20))!: 100.0,
-        Calendar.current.date(from: DateComponents(year: 2024, month: 7, day: 21))!: -50.0,
-        Calendar.current.date(from: DateComponents(year: 2024, month: 7, day: 22))!: 75.0,
-        // Add more dates and profit/loss values as needed
-    ]
-    
     var body: some View {
-        VStack {
-            daysOfWeek
-            daysGrid
+        VStack(spacing: 10) {
+            ScrollView {
+                monthLabel
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading)
+                VStack {
+                    daysOfWeek
+                        .padding(.vertical)
+                    daysGrid
+                }
+                .padding(10)
+                .background(Color.white.opacity(0.05), in: .rect(cornerRadius: 20))
                 .gesture(
                     DragGesture()
                         .onEnded { value in
@@ -35,9 +38,15 @@ struct JournalView: View {
                             }
                         }
                 )
-            Spacer()
+                
+                if let selectedDate = selectedDate {
+                    tradesForSelectedDateView(date: selectedDate)
+                }
+                
+                Spacer()
+            }
         }
-        .padding()
+        .padding(.horizontal)
     }
     
     var daysOfWeek: some View {
@@ -68,43 +77,91 @@ struct JournalView: View {
         }
     }
     
+    var monthLabel: some View {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM yyyy"
+        let monthString = dateFormatter.string(from: selectedMonth)
+        
+        return Text(monthString)
+            .font(.title)
+            .fontWeight(.bold)
+    }
+    
     func dayView(for date: Date) -> some View {
-        let isToday = calendar.isDate(date, inSameDayAs: currentDate)
         let isSelected = selectedDate != nil && calendar.isDate(date, inSameDayAs: selectedDate!)
-        let profit = profitData[date]
+        let trades = tradesForDate(date)
+        let profit = trades.reduce(0) { $0 + $1.pnl }
         let isCurrentMonth = calendar.isDate(date, equalTo: selectedMonth, toGranularity: .month)
         let isWeekend = calendar.isDateInWeekend(date)
         
-        return VStack(alignment: .leading) {
+        return VStack {
             Text("\(calendar.component(.day, from: date))")
                 .font(.caption)
-                .fontWeight(isToday ? .bold : .regular)
                 .foregroundColor(isSelected ? .white : (isWeekend ? .gray : isCurrentMonth ? .primary : .gray))
                 .padding(.top, 4)
-                .padding(.leading, 4)
             Spacer()
-            if let profit = profit {
+            if !trades.isEmpty {
                 Text(String(format: "%.2f", profit))
                     .font(.caption2)
                     .foregroundColor(profit >= 0 ? .green : .red)
                     .padding(.bottom, 4)
-                    .padding(.leading, 4)
             }
         }
         .frame(height: 60)
-        .frame(maxWidth: .infinity)  // Ensuring full width
+        .frame(maxWidth: .infinity)
         .background(
             RoundedRectangle(cornerRadius: 8)
                 .fill(dayBackgroundColor(for: date, profit: profit, isSelected: isSelected))
         )
     }
     
-    func dayBackgroundColor(for date: Date, profit: Double?, isSelected: Bool) -> Color {
+    func tradesForSelectedDateView(date: Date) -> some View {
+        let trades = tradesForDate(date)
+        
+        return VStack(spacing: 12) {
+            ForEach(trades) { trade in
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Text(trade.contractName)
+                            .font(.headline)
+                        Spacer()
+                        TradeTypeBadge(type: trade.type)
+                    }
+                    
+                    TradeInfoRow(title: "Entered", value: formattedTime(trade.enteredAt))
+                    TradeInfoRow(title: "Exited", value: formattedTime(trade.exitedAt))
+                    TradeInfoRow(title: "Entry Price", value: formattedPrice(trade.entryPrice))
+                    TradeInfoRow(title: "Exit Price", value: formattedPrice(trade.exitPrice))
+                    TradeInfoRow(title: "Size", value: formattedDecimal(trade.size))
+                    TradeInfoRow(title: "Fees", value: formattedPrice(trade.fees))
+                    
+                    HStack {
+                        PnLView(pnl: trade.pnl)
+                        Spacer()
+                        Text("Trade Day: \(formattedDate(trade.tradeDay))")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .padding()
+                .background(Color(.systemBackground))
+                .cornerRadius(10)
+                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
+            }
+        }
+    }
+    
+    func tradesForDate(_ date: Date) -> [Trade] {
+        let calendar = Calendar.current
+        return tradeJournal.trades.filter { calendar.isDate($0.tradeDay, inSameDayAs: date) }
+    }
+    
+    func dayBackgroundColor(for date: Date, profit: Double, isSelected: Bool) -> Color {
         if isSelected {
             return .blue
         } else if calendar.isDate(date, inSameDayAs: currentDate) {
             return .blue.opacity(0.3)
-        } else if let profit = profit {
+        } else if profit != 0 {
             return profit >= 0 ? .green.opacity(0.1) : .red.opacity(0.1)
         } else {
             return .clear
@@ -149,6 +206,28 @@ struct JournalView: View {
         }
         
         return days
+    }
+    
+    private func formattedDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter.string(from: date)
+    }
+    
+    private func formattedTime(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
+    
+    func formattedPrice(_ price: Double) -> String {
+        return String(format: "%.2f", price)
+    }
+    
+    func formattedDecimal(_ value: Double) -> String {
+        return String(format: "%.0f", value)
     }
 }
 

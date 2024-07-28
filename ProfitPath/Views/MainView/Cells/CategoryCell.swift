@@ -14,7 +14,7 @@ struct CategoryCell: View {
     var body: some View {
         Text(text)
             .fontWeight(.medium)
-            .foregroundColor(isSelected ? .primary : .secondary)
+            .foregroundColor(isSelected ? .black : .white)
             .padding(.vertical, 8)
             .padding(.horizontal, 16)
             .background(
