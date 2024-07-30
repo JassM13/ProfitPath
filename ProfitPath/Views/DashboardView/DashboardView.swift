@@ -12,123 +12,135 @@ import Spectra
 struct DashboardView: View {
     @State private var isFileImporterPresented = false
     @StateObject var tradeJournal = TradeJournal.shared
+    @State private var totalProfit: Double = 0.0
+    @State private var progressValue: Double = 0.0
     
     var body: some View {
         VStack {
-            //ScrollView {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(Color.white.opacity(0.05))
-                        .overlay(
-                            SpectraView(
-                                data: dailyProfits().values.map { $0 },
-                                type: .curved,
-                                visualType: .filled(color: .green, lineWidth: 3),
-                                offset: 0.2
-                                //currentValueLineType: .dash(color: .gray, lineWidth: 1, dash: [5])
-                            )
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.white.opacity(0.05))
+                    .overlay(
+                        LineChartView(trades: sortedTradesByDate(trades: tradeJournal.trades))
                             .padding(.top)
                             .mask(
                                 RoundedRectangle(cornerRadius: 8)
                             )
-                        )
-                }
-                .frame(height: UIScreen.main.bounds.height / 3.8)
+                    )
+            }
+            .frame(height: UIScreen.main.bounds.height / 3.8)
+            
+            HStack {
+                Text("Total Profit")
+                    .font(.headline)
+                    .foregroundColor(.gray)
                 
+                Spacer()
+                
+                SlotMachineText(value: totalProfit, animationDuration: 1)
+                    .onAppear {
+                        totalProfit = Double(formattedTotalProfit()) ?? 0
+                    }
+                    .onChange(of: tradeJournal.trades) {
+                        withAnimation(.easeInOut(duration: 1)) {
+                            totalProfit = Double(formattedTotalProfit()) ?? 0
+                        }
+                    }
+            }
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.white.opacity(0.025))
+                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+            )
+            
+            ZStack() {
                 HStack {
-                    Text("Total Profit")
-                        .font(.headline)
-                        .foregroundColor(.gray)
-                    
+                    VStack(alignment: .leading) {
+                        StatsCell(icon: "graph-up", iconColor: Color.green, title: "Best Day", value: formattedBestDayProfit())
+                        StatsCell(icon: "winrate", iconColor: Color.green, title: "WinRate", value: String(format: "%.2f%%", calculatedWinRate()))
+                            .padding(.top, 5)
+                    }
                     Spacer()
                     
-                    Text("$\(formattedTotalProfit())")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.green)
+                    VStack(alignment: .leading) {
+                        StatsCell(icon: "graph-down", iconColor: Color.red, title: "Worst Day", value: formattedWorstDayLoss())
+                        StatsCell(icon: "R:R", iconColor: Color.red, title: "R:R", value: String(format: "2.2"))
+                            .padding(.top, 5)
+                    }
                 }
-                .padding()
+                .padding(.all)
+                .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.025)))
+                Spacer()
+            }
+            
+            ZStack {
+                ProgressView(value: progressValue, total: 3000, label: {
+                    Text("Profit Goal")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }, currentValueLabel: {
+                    Text("\(formattedTotalProfit())/3000")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                })
+                .padding(.all)
                 .background(
                     RoundedRectangle(cornerRadius: 8)
                         .fill(Color.white.opacity(0.025))
-                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
                 )
-                
-                ZStack() {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            StatsCell(icon: "graph-up", iconColor: Color.green, title: "Best Day", value: formattedBestDayProfit())
-                            StatsCell(icon: "winrate", iconColor: Color.green, title: "WinRate", value: String(format: "%.2f%%", calculatedWinRate()))
-                                .padding(.top, 5)
-                        }
-                        Spacer()
-                        
-                        VStack(alignment: .leading) {
-                            StatsCell(icon: "graph-down", iconColor: Color.red, title: "Worst Day", value: formattedWorstDayLoss())
-                            StatsCell(icon: "R:R", iconColor: Color.red, title: "R:R", value: String(format: "2.2"))
-                                .padding(.top, 5)
-                        }
-                    }
-                    .padding(.all)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color.white.opacity(0.025)))
-                    Spacer()
-                }
-                
-                ZStack {
-                    ProgressView(value: Double(formattedTotalProfit()) ?? 0, total: 3000, label: {
-                        Text("Profit Goal")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                    }, currentValueLabel: {
-                        Text("\(formattedTotalProfit())/3000")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                    })
-                    .padding(.all)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.white.opacity(0.025))
-                    )
-                }
-                
-                HStack {
-                    Button(action: {
-                        isFileImporterPresented = true
-                    }) {
-                        Text("Upload CSV File")
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
-                    .fileImporter(
-                        isPresented: $isFileImporterPresented,
-                        allowedContentTypes: [UTType.commaSeparatedText],
-                        allowsMultipleSelection: false
-                    ) { result in
-                        switch result {
-                        case .success(let urls):
-                            if let url = urls.first {
-                                tradeJournal.importTrades(from: url)
-                            }
-                        case .failure(let error):
-                            print("Failed to import file: \(error.localizedDescription)")
-                        }
-                    }
-                    
-                    Button(action: {}) {
-                        Text("Add Trade")
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
+                .progressViewStyle(LinearProgressViewStyle())
+                .onAppear {
+                    withAnimation(.linear(duration: 1)) {
+                        progressValue = Double(formattedTotalProfit()) ?? 0
                     }
                 }
-                .padding()
+                .onChange(of: tradeJournal.trades) {
+                    withAnimation(.linear(duration: 1)) {
+                        progressValue = Double(formattedTotalProfit()) ?? 0
+                    }
+                }
             }
-            .padding([.horizontal])
-            Spacer()
-        //}
+            
+            HStack {
+                Button(action: {
+                    isFileImporterPresented = true
+                }) {
+                    Text("Upload CSV File")
+                        .padding()
+                        .background(Color.accentColor)
+                        .foregroundStyle(Color.black)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .fileImporter(
+                    isPresented: $isFileImporterPresented,
+                    allowedContentTypes: [UTType.commaSeparatedText],
+                    allowsMultipleSelection: false
+                ) { result in
+                    switch result {
+                    case .success(let urls):
+                        if let url = urls.first {
+                            tradeJournal.importTrades(from: url)
+                        }
+                    case .failure(let error):
+                        print("Failed to import file: \(error.localizedDescription)")
+                    }
+                }
+                
+                Button(action: {}) {
+                    Text("Add Trade")
+                        .padding()
+                        .background(Color.accentColor)
+                        .foregroundStyle(Color.black)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+            }
+            .padding()
+        }
+        .padding([.horizontal])
+        Spacer()
     }
     
     // Private helper functions for calculations
@@ -165,6 +177,35 @@ struct DashboardView: View {
         return profitsByDay
     }
 }
+
+struct SlotMachineText: View {
+    let value: Double
+    let animationDuration: Double
+    
+    @State private var animatedValue: Double = 0
+    
+    var body: some View {
+        Text("$\(String(format: "%.2f", animatedValue))")
+            .font(.title2)
+            .fontWeight(.bold)
+            .foregroundColor(.green)
+            .onAppear {
+                withAnimation(.linear(duration: animationDuration)) {
+                    animatedValue = value
+                }
+            }
+            .onChange(of: value) {
+                withAnimation(.linear(duration: animationDuration)) {
+                    animatedValue = value
+                }
+            }
+    }
+}
+
+func sortedTradesByDate(trades: [Trade]) -> [Trade] {
+    return trades.sorted { $0.tradeDay < $1.tradeDay }
+}
+
 
 #Preview {
     DashboardView()
