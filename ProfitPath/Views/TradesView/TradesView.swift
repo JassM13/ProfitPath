@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct TradesView: View {
-    @StateObject private var tradeJournal = TradeJournal.shared
+    @StateObject private var accountManager = AccountManager.shared
     
     var body: some View {
         VStack {
-            ForEach(tradeJournal.trades) { trade in
+            ForEach(accountManager.selectedAccount.trades) { trade in
                 TradeCell(trade: trade, onDelete: {
-                    tradeJournal.deleteTrade(trade)
+                    accountManager.deleteTrade(trade)
                 })
                 .padding(.bottom, 10)
             }

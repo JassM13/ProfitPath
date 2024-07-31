@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct JournalView: View {
-    @StateObject private var tradeJournal = TradeJournal.shared
+    @StateObject private var accountManager = AccountManager.shared
     
     let currentDate = Date()
     let calendar = Calendar.current
@@ -153,7 +153,7 @@ struct JournalView: View {
     
     func tradesForDate(_ date: Date) -> [Trade] {
         let calendar = Calendar.current
-        return tradeJournal.trades.filter { calendar.isDate($0.tradeDay, inSameDayAs: date) }
+        return accountManager.selectedAccount.trades.filter { calendar.isDate($0.tradeDay, inSameDayAs: date) }
     }
     
     func dayBackgroundColor(for date: Date, profit: Double, isSelected: Bool) -> Color {

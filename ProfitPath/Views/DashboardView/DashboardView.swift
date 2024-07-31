@@ -7,11 +7,12 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
-import Spectra
 
 struct DashboardView: View {
+    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var chartDetailManager = ChartDetailManager.shared
+    
     @State private var isFileImporterPresented = false
-    @StateObject var tradeJournal = TradeJournal.shared
     @State private var totalProfit: Double = 0.0
     @State private var progressValue: Double = 0.0
     
@@ -21,11 +22,33 @@ struct DashboardView: View {
                 RoundedRectangle(cornerRadius: 8)
                     .fill(Color.white.opacity(0.05))
                     .overlay(
-                        LineChartView(trades: sortedTradesByDate(trades: tradeJournal.trades))
-                            .padding(.top)
-                            .mask(
-                                RoundedRectangle(cornerRadius: 8)
-                            )
+                        GeometryReader { geometry in
+                            ZStack {
+                                // Use the geometry proxy to get the frame size
+                                CurvedLineChart(data: ProfitPath.dailyProfits(trades: accountManager.selectedAccount.trades), frame: geometry.frame(in: .local))
+                                    .frame(width: geometry.size.width, height: geometry.size.height)
+                                    .mask(
+                                        RoundedRectangle(cornerRadius: 8)
+                                    )
+                                
+                                if chartDetailManager.isTouching {
+                                    VStack {
+                                        Spacer()
+                                        HStack {
+                                            Spacer()
+                                            Text(chartDetailManager.detailText)
+                                                .padding()
+                                                .background(Color.black.opacity(0.8))
+                                                .foregroundColor(.white)
+                                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                                .transition(.opacity)
+                                                .animation(.easeInOut)
+                                        }
+                                    }
+                                    .padding()
+                                }
+                            }
+                        }
                     )
             }
             .frame(height: UIScreen.main.bounds.height / 3.8)
@@ -41,7 +64,7 @@ struct DashboardView: View {
                     .onAppear {
                         totalProfit = Double(formattedTotalProfit()) ?? 0
                     }
-                    .onChange(of: tradeJournal.trades) {
+                    .onChange(of: accountManager.selectedAccount.trades) {
                         withAnimation(.easeInOut(duration: 1)) {
                             totalProfit = Double(formattedTotalProfit()) ?? 0
                         }
@@ -95,7 +118,7 @@ struct DashboardView: View {
                         progressValue = Double(formattedTotalProfit()) ?? 0
                     }
                 }
-                .onChange(of: tradeJournal.trades) {
+                .onChange(of: accountManager.selectedAccount.trades) {
                     withAnimation(.linear(duration: 1)) {
                         progressValue = Double(formattedTotalProfit()) ?? 0
                     }
@@ -121,7 +144,7 @@ struct DashboardView: View {
                     switch result {
                     case .success(let urls):
                         if let url = urls.first {
-                            tradeJournal.importTrades(from: url)
+                            accountManager.importTrades(from: url)
                         }
                     case .failure(let error):
                         print("Failed to import file: \(error.localizedDescription)")
@@ -145,7 +168,7 @@ struct DashboardView: View {
     
     // Private helper functions for calculations
     private func formattedTotalProfit() -> String {
-        let totalProfit = tradeJournal.trades.reduce(0) { $0 + $1.pnl }
+        let totalProfit = accountManager.selectedAccount.trades.reduce(0) { $0 + $1.pnl }
         return String(format: "%.2f", totalProfit)
     }
     
@@ -160,14 +183,14 @@ struct DashboardView: View {
     }
     
     private func calculatedWinRate() -> Double {
-        let totalTrades = tradeJournal.trades.count
-        let winningTrades = tradeJournal.trades.filter { $0.pnl > 0 }.count
+        let totalTrades = accountManager.selectedAccount.trades.count
+        let winningTrades = accountManager.selectedAccount.trades.filter { $0.pnl > 0 }.count
         return totalTrades > 0 ? (Double(winningTrades) / Double(totalTrades)) * 100 : 0.0
     }
     
     private func dailyProfits() -> [Date: Double] {
         var profitsByDay: [Date: Double] = [:]
-        let trades = tradeJournal.trades
+        let trades = accountManager.selectedAccount.trades
         
         for trade in trades {
             let day = Calendar.current.startOfDay(for: trade.tradeDay)
@@ -202,9 +225,28 @@ struct SlotMachineText: View {
     }
 }
 
-func sortedTradesByDate(trades: [Trade]) -> [Trade] {
-    return trades.sorted { $0.tradeDay < $1.tradeDay }
+func dailyProfits(trades: [Trade]) -> [ChartData] {
+    var profitByDay: [Date: Double] = [:]
+    
+    // Aggregate profits by date
+    for trade in trades {
+        let day = Calendar.current.startOfDay(for: trade.tradeDay)
+        profitByDay[day, default: 0] += trade.pnl
+    }
+    
+    // Sort the days and calculate the cumulative profit
+    let sortedDates = profitByDay.keys.sorted()
+    var cumulativeProfit: Double = 0
+    var dailyCumulativeProfits: [ChartData] = []
+    
+    for date in sortedDates {
+        cumulativeProfit += profitByDay[date] ?? 0
+        dailyCumulativeProfits.append(ChartData(date: date, value: cumulativeProfit))
+    }
+    
+    return dailyCumulativeProfits
 }
+
 
 
 #Preview {

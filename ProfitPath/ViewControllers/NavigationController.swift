@@ -10,6 +10,7 @@ import Combine
 
 class NavigationController: ObservableObject {
     static let shared = NavigationController()
+    
     @Published var currentView: AnyView? = AnyView(DashboardView())
     @Published var viewName: String? = "Dashboard"
     

@@ -3,37 +3,39 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		C61FB0412BB5CDDC00D8141A /* StatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FB0402BB5CDDC00D8141A /* StatsCell.swift */; };
 		C63E61082C56031A00A8ADE1 /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E61072C56031A00A8ADE1 /* Trade.swift */; };
 		C63E610C2C56039F00A8ADE1 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E610B2C56039F00A8ADE1 /* CSVParser.swift */; };
-		C63E61102C56049600A8ADE1 /* TradeJournal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E610F2C56049600A8ADE1 /* TradeJournal.swift */; };
 		C63E61132C560E1800A8ADE1 /* TradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E61122C560E1800A8ADE1 /* TradesView.swift */; };
-		C64627902C58E3E2007D254D /* LinearChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C646278F2C58E3E2007D254D /* LinearChart.swift */; };
 		C64DE0EE2BAFCFFA00078997 /* ProfitPathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE0ED2BAFCFFA00078997 /* ProfitPathApp.swift */; };
 		C64DE0F42BAFCFFD00078997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C64DE0F32BAFCFFD00078997 /* Assets.xcassets */; };
 		C64DE1012BAFD12A00078997 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1002BAFD12A00078997 /* OnboardingView.swift */; };
 		C64DE1042BAFD16B00078997 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1032BAFD16B00078997 /* MainView.swift */; };
 		C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE10B2BAFD1FF00078997 /* CategoryCell.swift */; };
 		C64E26FA2C54A01D00E280CE /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64E26F92C54A01D00E280CE /* NavigationController.swift */; };
+		C6781A402C5A6E450023A859 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A3F2C5A6E450023A859 /* Account.swift */; };
+		C6781A422C5A6EDA0023A859 /* LinkedBrokerAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A412C5A6EDA0023A859 /* LinkedBrokerAccount.swift */; };
+		C6781A452C5A6FAE0023A859 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A442C5A6FAE0023A859 /* AccountManager.swift */; };
+		C6781A492C5A8CB80023A859 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A482C5A8CB80023A859 /* ChartData.swift */; };
+		C6781A502C5A8E920023A859 /* CurvedLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A4B2C5A8E920023A859 /* CurvedLineChart.swift */; };
+		C6781A512C5A8E920023A859 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A4D2C5A8E920023A859 /* LineChart.swift */; };
+		C6781A532C5A9C4E0023A859 /* ChartDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A522C5A9C4E0023A859 /* ChartDetailManager.swift */; };
+		C6781A572C5AA3F40023A859 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A562C5AA3F40023A859 /* SettingsView.swift */; };
 		C6A5BF852BAFF544005B68CF /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF842BAFF544005B68CF /* DashboardView.swift */; };
 		C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF872BAFF593005B68CF /* PerformanceView.swift */; };
 		C6A5BF8B2BB0027C005B68CF /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8A2BB0027C005B68CF /* JournalView.swift */; };
 		C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8D2BB0029C005B68CF /* ReportsView.swift */; };
-		C6C4BCC42BBA68D20090E25A /* Spectra in Frameworks */ = {isa = PBXBuildFile; productRef = C6C4BCC32BBA68D20090E25A /* Spectra */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C61FB0402BB5CDDC00D8141A /* StatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCell.swift; sourceTree = "<group>"; };
-		C632BEBF2BBA617800BBCFC8 /* Spectra */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Spectra; path = ../Spectra; sourceTree = "<group>"; };
 		C63E61072C56031A00A8ADE1 /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
 		C63E610B2C56039F00A8ADE1 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
-		C63E610F2C56049600A8ADE1 /* TradeJournal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeJournal.swift; sourceTree = "<group>"; };
 		C63E61122C560E1800A8ADE1 /* TradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradesView.swift; sourceTree = "<group>"; };
-		C646278F2C58E3E2007D254D /* LinearChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearChart.swift; sourceTree = "<group>"; };
 		C64DE0EA2BAFCFFA00078997 /* ProfitPath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProfitPath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64DE0ED2BAFCFFA00078997 /* ProfitPathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitPathApp.swift; sourceTree = "<group>"; };
 		C64DE0F32BAFCFFD00078997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,6 +44,14 @@
 		C64DE1032BAFD16B00078997 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C64DE10B2BAFD1FF00078997 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		C64E26F92C54A01D00E280CE /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		C6781A3F2C5A6E450023A859 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		C6781A412C5A6EDA0023A859 /* LinkedBrokerAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedBrokerAccount.swift; sourceTree = "<group>"; };
+		C6781A442C5A6FAE0023A859 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		C6781A482C5A8CB80023A859 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		C6781A4B2C5A8E920023A859 /* CurvedLineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurvedLineChart.swift; sourceTree = "<group>"; };
+		C6781A4D2C5A8E920023A859 /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
+		C6781A522C5A9C4E0023A859 /* ChartDetailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDetailManager.swift; sourceTree = "<group>"; };
+		C6781A562C5AA3F40023A859 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C6A5BF842BAFF544005B68CF /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		C6A5BF872BAFF593005B68CF /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		C6A5BF8A2BB0027C005B68CF /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
@@ -53,7 +63,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6C4BCC42BBA68D20090E25A /* Spectra in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,17 +81,11 @@
 			isa = PBXGroup;
 			children = (
 				C63E61072C56031A00A8ADE1 /* Trade.swift */,
+				C6781A3F2C5A6E450023A859 /* Account.swift */,
+				C6781A412C5A6EDA0023A859 /* LinkedBrokerAccount.swift */,
+				C6781A482C5A8CB80023A859 /* ChartData.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		C63E61092C56036A00A8ADE1 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				C63E610D2C56046E00A8ADE1 /* ProfitPathManager */,
-				C63E610A2C56037700A8ADE1 /* CSVManager */,
-			);
-			path = Managers;
 			sourceTree = "<group>";
 		};
 		C63E610A2C56037700A8ADE1 /* CSVManager */ = {
@@ -96,31 +99,23 @@
 		C63E610D2C56046E00A8ADE1 /* ProfitPathManager */ = {
 			isa = PBXGroup;
 			children = (
-				C63E610F2C56049600A8ADE1 /* TradeJournal.swift */,
+				C63E610A2C56037700A8ADE1 /* CSVManager */,
+				C6781A432C5A6F9C0023A859 /* AccountManager */,
 			);
 			path = ProfitPathManager;
 			sourceTree = "<group>";
 		};
-		C63E61112C560E0400A8ADE1 /* Trades */ = {
+		C63E61112C560E0400A8ADE1 /* TradesView */ = {
 			isa = PBXGroup;
 			children = (
 				C63E61122C560E1800A8ADE1 /* TradesView.swift */,
 			);
-			path = Trades;
-			sourceTree = "<group>";
-		};
-		C646278E2C58E3D3007D254D /* Charting */ = {
-			isa = PBXGroup;
-			children = (
-				C646278F2C58E3E2007D254D /* LinearChart.swift */,
-			);
-			path = Charting;
+			path = TradesView;
 			sourceTree = "<group>";
 		};
 		C64DE0E12BAFCFFA00078997 = {
 			isa = PBXGroup;
 			children = (
-				C632BEBF2BBA617800BBCFC8 /* Spectra */,
 				C64DE0EC2BAFCFFA00078997 /* ProfitPath */,
 				C64DE0EB2BAFCFFA00078997 /* Products */,
 			);
@@ -137,7 +132,7 @@
 		C64DE0EC2BAFCFFA00078997 /* ProfitPath */ = {
 			isa = PBXGroup;
 			children = (
-				C63E61092C56036A00A8ADE1 /* Managers */,
+				C63E610D2C56046E00A8ADE1 /* ProfitPathManager */,
 				C63E61062C56030400A8ADE1 /* Models */,
 				C64E26F82C549FF000E280CE /* ViewControllers */,
 				C64DE0FE2BAFD0C600078997 /* Views */,
@@ -151,7 +146,8 @@
 		C64DE0FE2BAFD0C600078997 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C63E61112C560E0400A8ADE1 /* Trades */,
+				C6781A552C5AA3DD0023A859 /* SettingsView */,
+				C63E61112C560E0400A8ADE1 /* TradesView */,
 				C6A5BF8C2BB0028D005B68CF /* ReportsView */,
 				C6A5BF892BB0026B005B68CF /* JournalView */,
 				C6A5BF862BAFF56E005B68CF /* PerformanceView */,
@@ -191,14 +187,64 @@
 			isa = PBXGroup;
 			children = (
 				C64E26F92C54A01D00E280CE /* NavigationController.swift */,
+				C6781A522C5A9C4E0023A859 /* ChartDetailManager.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C6781A432C5A6F9C0023A859 /* AccountManager */ = {
+			isa = PBXGroup;
+			children = (
+				C6781A442C5A6FAE0023A859 /* AccountManager.swift */,
+			);
+			path = AccountManager;
+			sourceTree = "<group>";
+		};
+		C6781A4A2C5A8E920023A859 /* BarChart */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BarChart;
+			sourceTree = "<group>";
+		};
+		C6781A4C2C5A8E920023A859 /* CurvedLineChart */ = {
+			isa = PBXGroup;
+			children = (
+				C6781A4B2C5A8E920023A859 /* CurvedLineChart.swift */,
+			);
+			path = CurvedLineChart;
+			sourceTree = "<group>";
+		};
+		C6781A4E2C5A8E920023A859 /* LineChart */ = {
+			isa = PBXGroup;
+			children = (
+				C6781A4D2C5A8E920023A859 /* LineChart.swift */,
+			);
+			path = LineChart;
+			sourceTree = "<group>";
+		};
+		C6781A4F2C5A8E920023A859 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				C6781A4A2C5A8E920023A859 /* BarChart */,
+				C6781A4C2C5A8E920023A859 /* CurvedLineChart */,
+				C6781A4E2C5A8E920023A859 /* LineChart */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		C6781A552C5AA3DD0023A859 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				C6781A562C5AA3F40023A859 /* SettingsView.swift */,
+			);
+			path = SettingsView;
 			sourceTree = "<group>";
 		};
 		C6A5BF832BAFF52D005B68CF /* DashboardView */ = {
 			isa = PBXGroup;
 			children = (
-				C646278E2C58E3D3007D254D /* Charting */,
+				C6781A4F2C5A8E920023A859 /* Charts */,
 				C61FB03F2BB5CDCB00D8141A /* Cells */,
 				C6A5BF842BAFF544005B68CF /* DashboardView.swift */,
 			);
@@ -246,7 +292,6 @@
 			);
 			name = ProfitPath;
 			packageProductDependencies = (
-				C6C4BCC32BBA68D20090E25A /* Spectra */,
 			);
 			productName = ProfitPath;
 			productReference = C64DE0EA2BAFCFFA00078997 /* ProfitPath.app */;
@@ -277,7 +322,6 @@
 			);
 			mainGroup = C64DE0E12BAFCFFA00078997;
 			packageReferences = (
-				C6C4BCC22BBA68D20090E25A /* XCLocalSwiftPackageReference "../Spectra" */,
 			);
 			productRefGroup = C64DE0EB2BAFCFFA00078997 /* Products */;
 			projectDirPath = "";
@@ -304,21 +348,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6781A572C5AA3F40023A859 /* SettingsView.swift in Sources */,
 				C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */,
 				C63E61132C560E1800A8ADE1 /* TradesView.swift in Sources */,
+				C6781A492C5A8CB80023A859 /* ChartData.swift in Sources */,
 				C63E61082C56031A00A8ADE1 /* Trade.swift in Sources */,
 				C64E26FA2C54A01D00E280CE /* NavigationController.swift in Sources */,
 				C6A5BF852BAFF544005B68CF /* DashboardView.swift in Sources */,
+				C6781A452C5A6FAE0023A859 /* AccountManager.swift in Sources */,
+				C6781A512C5A8E920023A859 /* LineChart.swift in Sources */,
+				C6781A402C5A6E450023A859 /* Account.swift in Sources */,
 				C64DE1042BAFD16B00078997 /* MainView.swift in Sources */,
 				C6A5BF8B2BB0027C005B68CF /* JournalView.swift in Sources */,
-				C64627902C58E3E2007D254D /* LinearChart.swift in Sources */,
+				C6781A422C5A6EDA0023A859 /* LinkedBrokerAccount.swift in Sources */,
 				C64DE1012BAFD12A00078997 /* OnboardingView.swift in Sources */,
 				C61FB0412BB5CDDC00D8141A /* StatsCell.swift in Sources */,
+				C6781A502C5A8E920023A859 /* CurvedLineChart.swift in Sources */,
 				C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */,
 				C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */,
-				C63E61102C56049600A8ADE1 /* TradeJournal.swift in Sources */,
 				C64DE0EE2BAFCFFA00078997 /* ProfitPathApp.swift in Sources */,
 				C63E610C2C56039F00A8ADE1 /* CSVParser.swift in Sources */,
+				C6781A532C5A9C4E0023A859 /* ChartDetailManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,8 +515,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -505,8 +555,8 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -545,20 +595,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		C6C4BCC22BBA68D20090E25A /* XCLocalSwiftPackageReference "../Spectra" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../Spectra;
-		};
-/* End XCLocalSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C6C4BCC32BBA68D20090E25A /* Spectra */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Spectra;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C64DE0E22BAFCFFA00078997 /* Project object */;
 }
