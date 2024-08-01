@@ -6,13 +6,11 @@
 //
 
 import SwiftUI
-import UniformTypeIdentifiers
 
 struct DashboardView: View {
     @StateObject private var accountManager = AccountManager.shared
     @StateObject private var chartDetailManager = ChartDetailManager.shared
     
-    @State private var isFileImporterPresented = false
     @State private var totalProfit: Double = 0.0
     @State private var progressValue: Double = 0.0
     
@@ -80,8 +78,8 @@ struct DashboardView: View {
             ZStack() {
                 HStack {
                     VStack(alignment: .leading) {
-                        StatsCell(icon: "graph-up", iconColor: Color.green, title: "Best Day", value: formattedBestDayProfit())
-                        StatsCell(icon: "winrate", iconColor: Color.green, title: "WinRate", value: String(format: "%.2f%%", calculatedWinRate()))
+                        StatsCell(icon: "graph-up", iconColor: Color.accentColor, title: "Best Day", value: formattedBestDayProfit())
+                        StatsCell(icon: "target", iconColor: Color.accentColor, title: "Accuracy", value: String(format: "%.2f%%", calculatedWinRate()), isSystemIcon: true)
                             .padding(.top, 5)
                     }
                     Spacer()
@@ -103,7 +101,7 @@ struct DashboardView: View {
                         .font(.headline)
                         .foregroundColor(.white)
                 }, currentValueLabel: {
-                    Text("\(formattedTotalProfit())/3000")
+                    Text("$\(formattedTotalProfit())/3000")
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 })
@@ -124,43 +122,6 @@ struct DashboardView: View {
                     }
                 }
             }
-            
-            HStack {
-                Button(action: {
-                    isFileImporterPresented = true
-                }) {
-                    Text("Upload CSV File")
-                        .padding()
-                        .background(Color.accentColor)
-                        .foregroundStyle(Color.black)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                .fileImporter(
-                    isPresented: $isFileImporterPresented,
-                    allowedContentTypes: [UTType.commaSeparatedText],
-                    allowsMultipleSelection: false
-                ) { result in
-                    switch result {
-                    case .success(let urls):
-                        if let url = urls.first {
-                            accountManager.importTrades(from: url)
-                        }
-                    case .failure(let error):
-                        print("Failed to import file: \(error.localizedDescription)")
-                    }
-                }
-                
-                Button(action: {}) {
-                    Text("Add Trade")
-                        .padding()
-                        .background(Color.accentColor)
-                        .foregroundStyle(Color.black)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-            }
-            .padding()
         }
         .padding([.horizontal])
         Spacer()
@@ -206,24 +167,41 @@ struct SlotMachineText: View {
     let animationDuration: Double
     
     @State private var animatedValue: Double = 0
+    @State private var timer: Timer? = nil
     
     var body: some View {
         Text("$\(String(format: "%.2f", animatedValue))")
             .font(.title2)
             .fontWeight(.bold)
-            .foregroundColor(.green)
-            .onAppear {
-                withAnimation(.linear(duration: animationDuration)) {
-                    animatedValue = value
-                }
-            }
+            .foregroundColor(.accentColor)
             .onChange(of: value) {
-                withAnimation(.linear(duration: animationDuration)) {
-                    animatedValue = value
-                }
+                startAnimation()
             }
     }
+    
+    private func startAnimation() {
+        timer?.invalidate() // Invalidate the previous timer if any
+        
+        let startValue = animatedValue
+        let endValue = value
+        let startTime = Date()
+        let endTime = startTime.addingTimeInterval(animationDuration)
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.02, repeats: true) { _ in
+            let currentTime = Date()
+            let progress = min(max((currentTime.timeIntervalSince(startTime) / animationDuration), 0), 1)
+            let interpolatedValue = startValue + (endValue - startValue) * progress
+            animatedValue = interpolatedValue
+            
+            if currentTime >= endTime {
+                animatedValue = endValue
+                timer?.invalidate()
+                timer = nil
+            }
+        }
+    }
 }
+
 
 func dailyProfits(trades: [Trade]) -> [ChartData] {
     var profitByDay: [Date: Double] = [:]

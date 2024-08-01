@@ -6,12 +6,57 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct TradesView: View {
     @StateObject private var accountManager = AccountManager.shared
     
+    @State private var isFileImporterPresented = false
+    
     var body: some View {
         VStack {
+            HStack {
+                Button(action: {
+                    isFileImporterPresented = true
+                }) {
+                    Text("Import Trades")
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.accentColor)
+                        .foregroundStyle(Color.black)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .frame(maxWidth: .infinity) // Make the button take as much space as possible
+                .fileImporter(
+                    isPresented: $isFileImporterPresented,
+                    allowedContentTypes: [UTType.commaSeparatedText],
+                    allowsMultipleSelection: false
+                ) { result in
+                    switch result {
+                    case .success(let urls):
+                        if let url = urls.first {
+                            accountManager.importTrades(from: url)
+                        }
+                    case .failure(let error):
+                        print("Failed to import file: \(error.localizedDescription)")
+                    }
+                }
+                
+                Button(action: {}) {
+                    Text("Add Trade")
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.accentColor)
+                        .foregroundStyle(Color.black)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                .frame(maxWidth: .infinity) // Make the button take as much space as possible
+            }
+            .padding(.horizontal)
+
+            
             ForEach(accountManager.selectedAccount.trades) { trade in
                 TradeCell(trade: trade, onDelete: {
                     accountManager.deleteTrade(trade)
@@ -58,7 +103,6 @@ struct TradeCell: View {
         .padding()
         .background(Color(.systemBackground))
         .cornerRadius(10)
-        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
     }
     
     private func formattedDate(_ date: Date) -> String {
