@@ -10,10 +10,10 @@ import SwiftData
 
 @Model
 class Account {
-    let id: UUID
+    @Attribute(.unique) let id: UUID
     var name: String
-    var trades: [Trade] = []
-    var linkedBrokerAccount: LinkedBrokerAccount? = nil
+    @Relationship(deleteRule: .cascade) var trades: [Trade] = []
+    @Relationship(deleteRule: .nullify) var linkedBrokerAccount: LinkedBrokerAccount?
 
     init(id: UUID = UUID(), name: String) {
         self.id = id

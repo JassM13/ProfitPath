@@ -13,6 +13,7 @@ class AccountManager: ObservableObject {
     
     private let modelContainer: ModelContainer
     private let context: ModelContext
+    private let journalManager: JournalManager = JournalManager()
     
     @Published private(set) var accounts: [Account]
     @Published private(set) var selectedAccount: Account
@@ -22,7 +23,8 @@ class AccountManager: ObservableObject {
             let schema = Schema([
                 Account.self,
                 Trade.self,
-                LinkedBrokerAccount.self
+                LinkedBrokerAccount.self,
+                Journal.self
             ])
             let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
             modelContainer = try ModelContainer(for: schema, configurations: [modelConfiguration])
@@ -37,7 +39,7 @@ class AccountManager: ObservableObject {
                 selectedAccount = defaultAccount
             } else {
                 accounts = fetchedAccounts
-                selectedAccount = fetchedAccounts[0]  // Use fetchedAccounts instead of self.accounts
+                selectedAccount = fetchedAccounts[0]
             }
             
         } catch {
@@ -57,13 +59,12 @@ class AccountManager: ObservableObject {
     }
     
     func importTrades(from fileURL: URL) {
-            if let parsedTrades = CSVParser.parse(fileURL: fileURL) {
-                for trade in parsedTrades {
-                    addTrade(trade)
-                }
+        if let parsedTrades = CSVParser.parse(fileURL: fileURL) {
+            for trade in parsedTrades {
+                addTrade(trade)
             }
         }
-        
+    }
     
     func addTrade(_ trade: Trade) {
         selectedAccount.trades.append(trade)
@@ -71,11 +72,12 @@ class AccountManager: ObservableObject {
     }
     
     func deleteTrade(_ trade: Trade) {
-            if let index = selectedAccount.trades.firstIndex(where: { $0.id == trade.id }) {
-                selectedAccount.trades.remove(at: index)
-                saveContext()
-            }
+        if let index = selectedAccount.trades.firstIndex(where: { $0.id == trade.id }) {
+            selectedAccount.trades.remove(at: index)
+            context.delete(trade)
+            saveContext()
         }
+    }
     
     func linkBrokerAccount(_ brokerAccount: LinkedBrokerAccount) {
         selectedAccount.linkedBrokerAccount = brokerAccount
@@ -87,24 +89,29 @@ class AccountManager: ObservableObject {
         saveContext()
     }
     
-    func getTradesForSelectedAccount() -> [Trade] {
-        return selectedAccount.trades
+    func getTrades() -> [TradeGroup] {
+        let trades = selectedAccount.trades
+        return journalManager.smartTradeGrouper.groupTrades(trades)
     }
     
     func deleteAccount(_ account: Account) {
         guard accounts.count > 1 else {
             print("Cannot delete the last account. Creating a new account instead.")
-            createAccount(name: "New Account")
-            return
+            createAccount(name: "Default Account")
+            return deleteAccount()
         }
         
-        if let index = accounts.firstIndex(where: { $0.id == account.id }) {
-            accounts.remove(at: index)
-            context.delete(account)
-            if selectedAccount.id == account.id {
-                selectedAccount = accounts[0]
+        deleteAccount()
+        
+        func deleteAccount() {
+            if let index = accounts.firstIndex(where: { $0.id == account.id }) {
+                accounts.remove(at: index)
+                context.delete(account)
+                if selectedAccount.id == account.id {
+                    selectedAccount = accounts[0]
+                }
+                saveContext()
             }
-            saveContext()
         }
     }
     
@@ -120,5 +127,11 @@ class AccountManager: ObservableObject {
         if accounts.isEmpty {
             createAccount(name: "Default Account")
         }
+    }
+    
+    func updateTradeJournal(for tradeGroup: TradeGroup, notes: String, images: [Data]) {
+        tradeGroup.journal.notes = notes
+        tradeGroup.journal.images = images
+        saveContext()
     }
 }

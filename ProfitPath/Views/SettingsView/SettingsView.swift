@@ -10,6 +10,8 @@ import SwiftData
 
 struct SettingsView: View {
     @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
+    
     @State private var showingAddAccount = false
     @State private var newAccountName = ""
     @State private var accountToDelete: Account?
@@ -17,42 +19,50 @@ struct SettingsView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            List {
-                Section(header: Text("Accounts")) {
-                    ForEach(accountManager.accounts) { account in
-                        AccountRow(account: account)
-                    }
-                    .onDelete(perform: deleteAccount)
-                }
-                
-                Section {
-                    Button(action: { showingAddAccount = true }) {
-                        Label("Add New Account", systemImage: "plus.circle")
-                    }
-                }
-            }
-            .listStyle(InsetGroupedListStyle())
-            .navigationTitle("Settings")
-            .sheet(isPresented: $showingAddAccount) {
-                AddAccountView(isPresented: $showingAddAccount, accountName: $newAccountName)
-            }
-            .alert(isPresented: $showingDeleteWarning) {
-                Alert(
-                    title: Text("Delete Account"),
-                    message: Text("Are you sure you want to delete this account? This action cannot be undone."),
-                    primaryButton: .destructive(Text("Delete")) {
-                        if let account = accountToDelete {
-                            accountManager.deleteAccount(account)
+            VStack {
+                List {
+                    Section(header: Text("Accounts")) {
+                        ForEach(accountManager.accounts) { account in
+                            AccountRow(account: account)
                         }
-                    },
-                    secondaryButton: .cancel()
-                )
+                        .onDelete(perform: deleteAccount)
+                        Section {
+                            Button(action: { showingAddAccount = true }) {
+                                Label("Add New Account", systemImage: "plus.circle")
+                                    .padding(.vertical, 10)
+                            }
+                        }
+                    }
+                    
+                    
+                    
+                    Section(header: Text("Options")) {
+                        Toggle("Enable Smart Grouping", isOn: $journalManager.smartTradeGrouper.smartGrouping)
+                    }
+                }
+                .listStyle(InsetGroupedListStyle())
+                .navigationTitle("Settings")
+                .sheet(isPresented: $showingAddAccount) {
+                    AddAccountView(isPresented: $showingAddAccount, accountName: $newAccountName)
+                }
+                .alert(isPresented: $showingDeleteWarning) {
+                    Alert(
+                        title: Text("Delete Account"),
+                        message: Text("Are you sure you want to delete this account? This action cannot be undone."),
+                        primaryButton: .destructive(Text("Delete")) {
+                            if let account = accountToDelete {
+                                accountManager.deleteAccount(account)
+                            }
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
             }
         }
     }
     
     private func deleteAccount(at offsets: IndexSet) {
-        if let index = offsets.first, accountManager.accounts.count > 1 {
+        if let index = offsets.first, accountManager.accounts.count >= 1 {
             accountToDelete = accountManager.accounts[index]
             showingDeleteWarning = true
         }

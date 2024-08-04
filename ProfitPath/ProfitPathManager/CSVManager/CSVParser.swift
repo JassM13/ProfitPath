@@ -81,6 +81,7 @@ extension DateFormatter {
     static let csvDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy HH:mm:ss Z"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0) // UTC
         return formatter
     }()
 }

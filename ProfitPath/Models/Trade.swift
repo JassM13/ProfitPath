@@ -36,3 +36,54 @@ class Trade {
         self.tradeDay = tradeDay
     }
 }
+
+class TradeGroup: Identifiable {
+    var id = UUID()
+    let trades: [Trade]
+    let contractName: String
+    let enteredAt: Date
+    let exitedAt: Date
+    let entryPrice: Double
+    let exitPrice: Double
+    let totalSize: Double
+    let totalFees: Double
+    let totalPnL: Double
+    let type: String
+    let tradeDay: Date
+    var groupType: GroupType
+    var journal: Journal
+    
+    init(trades: [Trade], groupType: GroupType = .normal, journal: Journal) {
+        self.id = UUID()
+        self.trades = trades
+        self.contractName = trades.first?.contractName ?? ""
+        self.enteredAt = trades.map { $0.enteredAt }.min() ?? Date()
+        self.exitedAt = trades.map { $0.exitedAt }.max() ?? Date()
+        
+        self.totalSize = trades.reduce(0) { $0 + $1.size }
+        self.totalFees = trades.reduce(0) { $0 + $1.fees }
+        self.totalPnL = trades.reduce(0) { $0 + $1.pnl }
+        self.type = trades.first?.type ?? ""
+        self.tradeDay = trades.first?.tradeDay ?? Date()
+        self.groupType = groupType
+        self.journal = journal
+        
+        
+        // Calculate entry and exit prices
+        if trades.count == 1 {
+            self.entryPrice = trades[0].entryPrice
+            self.exitPrice = trades[0].exitPrice
+        } else {
+            // For grouped trades, use first trade's entry and last trade's exit
+            self.entryPrice = trades.first?.entryPrice ?? 0
+            self.exitPrice = trades.last?.exitPrice ?? 0
+        }
+    }
+}
+
+enum GroupType: String, Codable {
+    case normal
+    case scalping
+    case groupedTrade
+    case unknown
+}

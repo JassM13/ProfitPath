@@ -35,15 +35,15 @@ struct DashboardView: View {
                                         HStack {
                                             Spacer()
                                             Text(chartDetailManager.detailText)
-                                                .padding()
+                                                .font(.system(size: 14, weight: .medium))
+                                                .padding(12) // Increased padding for better spacing
                                                 .background(Color.black.opacity(0.8))
                                                 .foregroundColor(.white)
-                                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                                .clipShape(RoundedRectangle(cornerRadius: 10)) // Increased corner radius for a smoother look
                                                 .transition(.opacity)
-                                                .animation(.easeInOut)
                                         }
                                     }
-                                    .padding()
+                                    .padding(4)
                                 }
                             }
                         }

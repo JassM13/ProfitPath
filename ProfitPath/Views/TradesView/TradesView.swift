@@ -57,9 +57,9 @@ struct TradesView: View {
             .padding(.horizontal)
 
             
-            ForEach(accountManager.selectedAccount.trades) { trade in
+            ForEach(accountManager.getTrades()) { trade in
                 TradeCell(trade: trade, onDelete: {
-                    accountManager.deleteTrade(trade)
+                    //accountManager.deleteTrade(trade)
                 })
                 .padding(.bottom, 10)
             }
@@ -69,7 +69,7 @@ struct TradesView: View {
 }
 
 struct TradeCell: View {
-    let trade: Trade
+    let trade: TradeGroup
     let onDelete: () -> Void
     
     var body: some View {
@@ -89,11 +89,11 @@ struct TradeCell: View {
             TradeInfoRow(title: "Exited", value: formattedTime(trade.exitedAt))
             TradeInfoRow(title: "Entry Price", value: formattedPrice(trade.entryPrice))
             TradeInfoRow(title: "Exit Price", value: formattedPrice(trade.exitPrice))
-            TradeInfoRow(title: "Size", value: formattedDecimal(trade.size))
-            TradeInfoRow(title: "Fees", value: formattedPrice(trade.fees))
+            TradeInfoRow(title: "Size", value: formattedDecimal(trade.totalSize))
+            TradeInfoRow(title: "Fees", value: formattedPrice(trade.totalFees))
             
             HStack {
-                PnLView(pnl: trade.pnl)
+                PnLView(pnl: trade.totalPnL)
                 Spacer()
                 Text("Trade Day: \(formattedDate(trade.tradeDay))")
                     .font(.caption)

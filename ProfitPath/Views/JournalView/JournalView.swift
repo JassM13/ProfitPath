@@ -64,54 +64,67 @@ struct JournalView: View {
         let days = daysInMonth(for: selectedMonth)
         return LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 7), spacing: 8) {
             ForEach(days, id: \.self) { date in
-                if let date = date {
-                    dayView(for: date)
-                        .onTapGesture {
-                            selectedDate = date
-                        }
-                } else {
-                    Color.clear
-                        .frame(height: 60)
-                }
+                dayView(for: date)
             }
         }
     }
     
     var monthLabel: some View {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMMM yyyy"
-        let monthString = dateFormatter.string(from: selectedMonth)
         
-        return Text(monthString)
-            .font(.title)
-            .fontWeight(.bold)
+        // Check if a date is selected
+        if let selectedDate = selectedDate {
+            dateFormatter.dateFormat = "MMMM d, yyyy"
+            let monthDateString = dateFormatter.string(from: selectedDate)
+            return Text(monthDateString)
+                .font(.title)
+                .fontWeight(.bold)
+        } else {
+            dateFormatter.dateFormat = "MMMM yyyy"
+            let monthString = dateFormatter.string(from: selectedMonth)
+            return Text(monthString)
+                .font(.title)
+                .fontWeight(.bold)
+        }
     }
+
     
-    func dayView(for date: Date) -> some View {
+    func dayView(for date: Date?) -> some View {
+        guard let date = date else {
+            return AnyView(Color.clear.frame(height: 60))
+        }
+        
         let isSelected = selectedDate != nil && calendar.isDate(date, inSameDayAs: selectedDate!)
         let trades = tradesForDate(date)
         let profit = trades.reduce(0) { $0 + $1.pnl }
         let isCurrentMonth = calendar.isDate(date, equalTo: selectedMonth, toGranularity: .month)
         let isWeekend = calendar.isDateInWeekend(date)
         
-        return VStack {
-            Text("\(calendar.component(.day, from: date))")
-                .font(.caption)
-                .foregroundColor(isSelected ? .white : (isWeekend ? .gray : isCurrentMonth ? .primary : .gray))
-                .padding(.top, 4)
-            Spacer()
-            if !trades.isEmpty {
-                Text(String(format: "%.2f", profit))
-                    .font(.caption2)
-                    .foregroundColor(profit >= 0 ? .green : .red)
-                    .padding(.bottom, 4)
+        return AnyView(
+            Button(action: {
+                selectedDate = date
+            }) {
+                VStack {
+                    Text("\(calendar.component(.day, from: date))")
+                        .font(.caption)
+                        .foregroundColor(isSelected ? .white : (isWeekend ? .gray : isCurrentMonth ? .primary : .gray))
+                        .padding(.top, 4)
+                    Spacer()
+                    if !trades.isEmpty {
+                        Text(String(format: "%.2f", profit))
+                            .lineLimit(1)
+                            .font(.caption2)
+                            .foregroundColor(profit >= 0 ? .accentColor : .red)
+                            .padding(.bottom, 4)
+                    }
+                }
+                .frame(height: 60)
+                .frame(maxWidth: .infinity)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(dayBackgroundColor(for: date, profit: profit, isSelected: isSelected))
+                )
             }
-        }
-        .frame(height: 60)
-        .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(dayBackgroundColor(for: date, profit: profit, isSelected: isSelected))
         )
     }
     
@@ -157,11 +170,18 @@ struct JournalView: View {
     
     func dayBackgroundColor(for date: Date, profit: Double, isSelected: Bool) -> Color {
         if isSelected {
-            return .blue
+            // Increase opacity for the selected date
+            if profit < 0 {
+                return .red.opacity(0.3) // Higher opacity for selected negative profit days
+            } else {
+                return .accentColor.opacity(0.6) // Higher opacity for selected non-negative days
+            }
         } else if calendar.isDate(date, inSameDayAs: currentDate) {
-            return .blue.opacity(0.3)
+            return .accentColor.opacity(0.3) // Lower opacity for the current date
+        } else if profit < 0 {
+            return .red.opacity(0.1) // Default opacity for negative profit days
         } else if profit != 0 {
-            return profit >= 0 ? .green.opacity(0.1) : .red.opacity(0.1)
+            return profit >= 0 ? .accentColor.opacity(0.1) : .clear // Default opacity for other non-negative profit days
         } else {
             return .clear
         }
