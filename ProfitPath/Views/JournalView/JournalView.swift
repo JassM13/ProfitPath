@@ -17,36 +17,91 @@ struct JournalView: View {
     
     var body: some View {
         VStack(spacing: 10) {
-            ScrollView {
+            HStack {
                 monthLabel
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading)
-                VStack {
-                    daysOfWeek
-                        .padding(.vertical)
-                    daysGrid
-                }
-                .padding(10)
-                .background(Color.white.opacity(0.05), in: .rect(cornerRadius: 20))
-                .gesture(
-                    DragGesture()
-                        .onEnded { value in
-                            if value.translation.width < -50 {
-                                selectedMonth = calendar.date(byAdding: .month, value: 1, to: selectedMonth)!
-                            } else if value.translation.width > 50 {
-                                selectedMonth = calendar.date(byAdding: .month, value: -1, to: selectedMonth)!
-                            }
+                
+                //monthSelector // Using the computed property
+            }
+            
+            VStack {
+                daysOfWeek
+                    .padding(.vertical)
+                daysGrid
+            }
+            .padding(10)
+            .background(Color.white.opacity(0.05), in: .rect(cornerRadius: 20))
+            .gesture(
+                DragGesture()
+                    .onEnded { value in
+                        if value.translation.width < -50 {
+                            selectedMonth = calendar.date(byAdding: .month, value: 1, to: selectedMonth)!
+                        } else if value.translation.width > 50 {
+                            selectedMonth = calendar.date(byAdding: .month, value: -1, to: selectedMonth)!
                         }
-                )
-                
-                if let selectedDate = selectedDate {
-                    tradesForSelectedDateView(date: selectedDate)
-                }
-                
-                Spacer()
+                    }
+            )
+            
+            if let selectedDate = selectedDate {
+                tradesForSelectedDateView(date: selectedDate)
             }
         }
         .padding(.horizontal)
+    }
+    
+    // Computed property for month selector
+    var monthSelector: some View {
+        HStack(spacing: 0) {
+            Button(action: {
+                selectedMonth = calendar.date(byAdding: .month, value: -1, to: selectedMonth)!
+            }) {
+                Image(systemName: "chevron.left")
+                    .font(.title3)
+                    .frame(width: 44, height: 44)
+                    .background(Color.accentColor)
+                    .foregroundColor(.black)
+                    .clipShape(
+                        .rect(
+                            topLeadingRadius: 16,
+                            bottomLeadingRadius: 16,
+                            bottomTrailingRadius: 0,
+                            topTrailingRadius: 0
+                        )
+                    )
+            }
+            
+            Button(action: {
+                selectedMonth = calendar.date(byAdding: .month, value: 1, to: selectedMonth)!
+            }) {
+                Image(systemName: "chevron.right")
+                    .font(.title3)
+                    .frame(width: 44, height: 44)
+                    .background(Color.accentColor)
+                    .foregroundColor(.black)
+                    .clipShape(
+                        .rect(
+                            topLeadingRadius: 0,
+                            bottomLeadingRadius: 0,
+                            bottomTrailingRadius: 16,
+                            topTrailingRadius: 16
+                        )
+                    )
+            }
+        }
+        .padding(.trailing)
+    }
+    
+    var monthLabel: some View {
+        Text(monthLabelText)
+            .font(.title)
+            .fontWeight(.bold)
+    }
+    
+    var monthLabelText: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM yyyy"
+        return dateFormatter.string(from: selectedMonth)
     }
     
     var daysOfWeek: some View {
@@ -68,26 +123,6 @@ struct JournalView: View {
             }
         }
     }
-    
-    var monthLabel: some View {
-        let dateFormatter = DateFormatter()
-        
-        // Check if a date is selected
-        if let selectedDate = selectedDate {
-            dateFormatter.dateFormat = "MMMM d, yyyy"
-            let monthDateString = dateFormatter.string(from: selectedDate)
-            return Text(monthDateString)
-                .font(.title)
-                .fontWeight(.bold)
-        } else {
-            dateFormatter.dateFormat = "MMMM yyyy"
-            let monthString = dateFormatter.string(from: selectedMonth)
-            return Text(monthString)
-                .font(.title)
-                .fontWeight(.bold)
-        }
-    }
-
     
     func dayView(for date: Date?) -> some View {
         guard let date = date else {
@@ -165,23 +200,24 @@ struct JournalView: View {
     
     func tradesForDate(_ date: Date) -> [Trade] {
         let calendar = Calendar.current
+        // Filter trades for the specific date
         return accountManager.selectedAccount.trades.filter { calendar.isDate($0.tradeDay, inSameDayAs: date) }
     }
     
+    
     func dayBackgroundColor(for date: Date, profit: Double, isSelected: Bool) -> Color {
         if isSelected {
-            // Increase opacity for the selected date
             if profit < 0 {
-                return .red.opacity(0.3) // Higher opacity for selected negative profit days
+                return .red.opacity(0.3)
             } else {
-                return .accentColor.opacity(0.6) // Higher opacity for selected non-negative days
+                return .accentColor.opacity(0.6)
             }
         } else if calendar.isDate(date, inSameDayAs: currentDate) {
-            return .accentColor.opacity(0.3) // Lower opacity for the current date
+            return .accentColor.opacity(0.3)
         } else if profit < 0 {
-            return .red.opacity(0.1) // Default opacity for negative profit days
+            return .red.opacity(0.1)
         } else if profit != 0 {
-            return profit >= 0 ? .accentColor.opacity(0.1) : .clear // Default opacity for other non-negative profit days
+            return profit >= 0 ? .accentColor.opacity(0.1) : .clear
         } else {
             return .clear
         }
@@ -242,11 +278,11 @@ struct JournalView: View {
     }
     
     func formattedPrice(_ price: Double) -> String {
-        return String(format: "%.2f", price)
+        return String(format: "$%.2f", price)
     }
     
     func formattedDecimal(_ value: Double) -> String {
-        return String(format: "%.0f", value)
+        return String(format: "%.2f", value)
     }
 }
 

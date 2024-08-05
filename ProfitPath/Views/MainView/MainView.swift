@@ -7,14 +7,10 @@
 
 import SwiftUI
 
-struct PickerOption: Identifiable, Hashable {
-    let id = UUID()
-    let title: String
-}
+import SwiftUI
 
 struct MainView: View {
     @ObservedObject var navigationController = NavigationController.shared
-    
     @StateObject var accountManager = AccountManager.shared
     
     var body: some View {
@@ -41,16 +37,18 @@ struct MainView: View {
                                 .fontWeight(.bold)
                         }
                     } label: {
-                        Text(accountManager.selectedAccount.name)
-                            .fontWeight(.medium)
-                            .font(.system(size: 16)) // Reduced font size
-                            .foregroundColor(.white) // Adjust color as needed
-                            .padding(.horizontal, 4) // Reduced padding
-                            .background(Color.black.opacity(0.2)) // Slight background for better readability
-                        
-                        Image(systemName: "chevron.down") // Replace with desired icon
-                            .foregroundColor(.white)
-                            .imageScale(.small) // Adjust icon size
+                        HStack {
+                            Text(accountManager.selectedAccount.name)
+                                .fontWeight(.medium)
+                                .font(.system(size: 16)) // Reduced font size
+                                .foregroundColor(.white) // Adjust color as needed
+                                .padding(.horizontal, 4) // Reduced padding
+                                .background(Color.black.opacity(0.2)) // Slight background for better readability
+                            
+                            Image(systemName: "chevron.down") // Replace with desired icon
+                                .foregroundColor(.white)
+                                .imageScale(.small) // Adjust icon size
+                        }
                     }
                     
                     Spacer()
@@ -59,10 +57,8 @@ struct MainView: View {
                         Image(systemName: "list.dash")
                             .fontWeight(.medium)
                     }
-                    
-                    
                 }
-                .padding([.horizontal, .bottom]) // Adjusted horizontal padding to match new size
+                .padding([.horizontal, .bottom])
                 
                 ScrollView(.vertical, showsIndicators: false) {
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -73,21 +69,11 @@ struct MainView: View {
                                 }) {
                                     CategoryCell(text: "Dashboard", isSelected: navigationController.viewName == "Dashboard")
                                 }
-                               /* Button(action: {
-                                    navigationController.updateCurrentView(AnyView(PerformanceView()), viewName: "Performance")
-                                }) {
-                                    CategoryCell(text: "Performance", isSelected: navigationController.viewName == "Performance")
-                                }*/
                                 Button(action: {
                                     navigationController.updateCurrentView(AnyView(JournalView()), viewName: "Journal")
                                 }) {
                                     CategoryCell(text: "Journal", isSelected: navigationController.viewName == "Journal")
                                 }
-                                /*Button(action: {
-                                    navigationController.updateCurrentView(AnyView(ReportsView()), viewName: "Reports")
-                                }) {
-                                    CategoryCell(text: "Reports", isSelected: navigationController.viewName == "Reports")
-                                }*/
                                 Button(action: {
                                     navigationController.updateCurrentView(AnyView(TradesView()), viewName: "Trades")
                                 }) {
@@ -97,15 +83,17 @@ struct MainView: View {
                         }
                         .padding([.horizontal, .bottom])
                     }
-                    //.frame(height: 80)
                     
                     if let currentView = navigationController.currentView {
                         currentView
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    } else {
+                        Spacer()
                     }
-                    Spacer()
                 }
             }
-        }.navigationBarBackButtonHidden(true)
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

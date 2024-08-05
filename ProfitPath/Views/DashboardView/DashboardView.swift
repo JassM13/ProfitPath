@@ -23,7 +23,7 @@ struct DashboardView: View {
                         GeometryReader { geometry in
                             ZStack {
                                 // Use the geometry proxy to get the frame size
-                                CurvedLineChart(data: ProfitPath.dailyProfits(trades: accountManager.selectedAccount.trades), frame: geometry.frame(in: .local))
+                                LineChart(data: ProfitPath.dailyProfits(trades: accountManager.selectedAccount.trades), frame: geometry.frame(in: .local))
                                     .frame(width: geometry.size.width, height: geometry.size.height)
                                     .mask(
                                         RoundedRectangle(cornerRadius: 8)

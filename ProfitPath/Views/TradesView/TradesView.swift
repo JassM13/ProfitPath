@@ -64,7 +64,6 @@ struct TradesView: View {
                 .padding(.bottom, 10)
             }
         }
-        .padding()
     }
 }
 
