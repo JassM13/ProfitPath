@@ -72,6 +72,7 @@ class CSVParser {
             pnl: pnl,
             size: size,
             type: type,
+            instrumentType: "Futures",
             tradeDay: tradeDay
         )
     }

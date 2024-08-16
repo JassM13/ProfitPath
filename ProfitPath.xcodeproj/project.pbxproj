@@ -32,6 +32,7 @@
 		C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF872BAFF593005B68CF /* PerformanceView.swift */; };
 		C6A5BF8B2BB0027C005B68CF /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8A2BB0027C005B68CF /* JournalView.swift */; };
 		C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8D2BB0029C005B68CF /* ReportsView.swift */; };
+		C6EBB91F2C6F15A9006192D6 /* AddTradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EBB91E2C6F15A9006192D6 /* AddTradeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		C6A5BF872BAFF593005B68CF /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		C6A5BF8A2BB0027C005B68CF /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		C6A5BF8D2BB0029C005B68CF /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
+		C6EBB91E2C6F15A9006192D6 /* AddTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTradeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 		C64DE0FE2BAFD0C600078997 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C6EBB91D2C6F158E006192D6 /* AddTradeView */,
 				C6781A552C5AA3DD0023A859 /* SettingsView */,
 				C63E61112C560E0400A8ADE1 /* TradesView */,
 				C6A5BF8C2BB0028D005B68CF /* ReportsView */,
@@ -292,6 +295,14 @@
 			path = ReportsView;
 			sourceTree = "<group>";
 		};
+		C6EBB91D2C6F158E006192D6 /* AddTradeView */ = {
+			isa = PBXGroup;
+			children = (
+				C6EBB91E2C6F15A9006192D6 /* AddTradeView.swift */,
+			);
+			path = AddTradeView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -376,6 +387,7 @@
 				C6781A512C5A8E920023A859 /* LineChart.swift in Sources */,
 				C6781A402C5A6E450023A859 /* Account.swift in Sources */,
 				C64DE1042BAFD16B00078997 /* MainView.swift in Sources */,
+				C6EBB91F2C6F15A9006192D6 /* AddTradeView.swift in Sources */,
 				C6A5BF8B2BB0027C005B68CF /* JournalView.swift in Sources */,
 				C6781A422C5A6EDA0023A859 /* LinkedBrokerAccount.swift in Sources */,
 				C64EA6602C5F3B4000A6B29E /* JournalManager.swift in Sources */,

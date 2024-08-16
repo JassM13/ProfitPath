@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct LineChart: View {
-    private let data: [ChartData]
+    private var data: [ChartData]
     private let frame: CGRect
     private let offset: Double
 
     @StateObject private var detailManager = ChartDetailManager.shared
     
     init(data: [ChartData],
-                frame: CGRect,
-                offset: Double = 0) {
-        self.data = data
+         frame: CGRect,
+         offset: Double = 0) {
+        // Sort the data by date and add a zero point at the earliest date
+        var sortedData = data.sorted { $0.date < $1.date }
+        if let earliestDate = sortedData.first?.date {
+            sortedData.insert(ChartData(date: earliestDate, value: 0), at: 0)
+        }
+        self.data = sortedData
         self.frame = frame
         self.offset = offset
     }

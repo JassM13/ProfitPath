@@ -20,9 +20,10 @@ class Trade {
     var pnl: Double
     var size: Double
     var type: String
+    var instrumentType: String
     var tradeDay: Date
     
-    init(id: String, contractName: String, enteredAt: Date, exitedAt: Date, entryPrice: Double, exitPrice: Double, fees: Double, pnl: Double, size: Double, type: String, tradeDay: Date) {
+    init(id: String, contractName: String, enteredAt: Date, exitedAt: Date, entryPrice: Double, exitPrice: Double, fees: Double, pnl: Double, size: Double, type: String, instrumentType: String, tradeDay: Date) {
         self.id = id
         self.contractName = contractName
         self.enteredAt = enteredAt
@@ -33,6 +34,7 @@ class Trade {
         self.pnl = pnl
         self.size = size
         self.type = type
+        self.instrumentType = instrumentType
         self.tradeDay = tradeDay
     }
 }

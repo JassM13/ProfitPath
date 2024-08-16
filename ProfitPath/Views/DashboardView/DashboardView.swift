@@ -23,7 +23,7 @@ struct DashboardView: View {
                         GeometryReader { geometry in
                             ZStack {
                                 // Use the geometry proxy to get the frame size
-                                LineChart(data: ProfitPath.dailyProfits(trades: accountManager.selectedAccount.trades), frame: geometry.frame(in: .local))
+                                CurvedLineChart(data: ProfitPath.dailyProfits(trades: accountManager.selectedAccount.trades), frame: geometry.frame(in: .local))
                                     .frame(width: geometry.size.width, height: geometry.size.height)
                                     .mask(
                                         RoundedRectangle(cornerRadius: 8)
@@ -86,8 +86,7 @@ struct DashboardView: View {
                     
                     VStack(alignment: .leading) {
                         StatsCell(icon: "graph-down", iconColor: Color.red, title: "Worst Day", value: formattedWorstDayLoss())
-                        StatsCell(icon: "R:R", iconColor: Color.red, title: "R:R", value: String(format: "2.2"))
-                            .padding(.top, 5)
+                        StatsCell(icon: "R:R", iconColor: Color.red, title: "R:R", value: String(format: "%.2f", calculateRiskRewardRatio()))
                     }
                 }
                 .padding(.all)
@@ -160,6 +159,25 @@ struct DashboardView: View {
         
         return profitsByDay
     }
+    
+    private func calculateRiskRewardRatio() -> Double {
+            let trades = accountManager.selectedAccount.trades
+            let winningTrades = trades.filter { $0.pnl > 0 }
+            let losingTrades = trades.filter { $0.pnl < 0 }
+            
+            guard !winningTrades.isEmpty && !losingTrades.isEmpty else {
+                return 0 // Return 0 if there are no winning or losing trades
+            }
+            
+            let averageWin = winningTrades.reduce(0) { $0 + $1.pnl } / Double(winningTrades.count)
+            let averageLoss = abs(losingTrades.reduce(0) { $0 + $1.pnl } / Double(losingTrades.count))
+            
+            guard averageLoss != 0 else {
+                return Double.infinity // Avoid division by zero
+            }
+            
+            return averageWin / averageLoss
+        }
 }
 
 struct SlotMachineText: View {
@@ -224,8 +242,6 @@ func dailyProfits(trades: [Trade]) -> [ChartData] {
     
     return dailyCumulativeProfits
 }
-
-
 
 #Preview {
     DashboardView()

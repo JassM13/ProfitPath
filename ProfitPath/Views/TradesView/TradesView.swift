@@ -11,6 +11,8 @@ import UniformTypeIdentifiers
 struct TradesView: View {
     @StateObject private var accountManager = AccountManager.shared
     
+    
+    @State private var showingAddTradeSheet = false
     @State private var isFileImporterPresented = false
     
     var body: some View {
@@ -43,21 +45,26 @@ struct TradesView: View {
                     }
                 }
                 
-                Button(action: {}) {
-                    Text("Add Trade")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.accentColor)
-                        .foregroundStyle(Color.black)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                .frame(maxWidth: .infinity) // Make the button take as much space as possible
+                Button(action: {
+                                showingAddTradeSheet.toggle()
+                            }) {
+                                Text("Add Trade")
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.accentColor)
+                                    .foregroundStyle(Color.black)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+                            .frame(maxWidth: .infinity)
             }
+            .sheet(isPresented: $showingAddTradeSheet) {
+                        AddTradeView()
+                    }
             .padding(.horizontal)
 
             
-            ForEach(accountManager.getTrades()) { trade in
+            ForEach(accountManager.getTrades().sorted(by: { $0.tradeDay > $1.tradeDay })) { trade in
                 TradeCell(trade: trade, onDelete: {
                     //accountManager.deleteTrade(trade)
                 })
