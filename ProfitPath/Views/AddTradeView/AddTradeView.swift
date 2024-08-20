@@ -41,6 +41,7 @@ struct AddTradeView: View {
                     Picker("Type", selection: $trade.type) {
                         ForEach(tradeTypes, id: \.self) { Text($0) }
                     }
+                    .onChange(of: trade.type) { updateCalculatedProfit() }
                     Picker("Instrument", selection: $trade.instrumentType) {
                         ForEach(instrumentTypes, id: \.self) { Text($0) }
                     }

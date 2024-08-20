@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Spectra
 
 struct PerformanceView: View {
     var demoData: [Double] = [8, -2, 4, 6, 12, -9, 2]

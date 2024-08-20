@@ -10,8 +10,6 @@ import UniformTypeIdentifiers
 
 struct TradesView: View {
     @StateObject private var accountManager = AccountManager.shared
-    
-    
     @State private var showingAddTradeSheet = false
     @State private var isFileImporterPresented = false
     
@@ -25,11 +23,9 @@ struct TradesView: View {
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color.accentColor)
-                        .foregroundStyle(Color.black)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                         .cornerRadius(8)
                 }
-                .frame(maxWidth: .infinity) // Make the button take as much space as possible
                 .fileImporter(
                     isPresented: $isFileImporterPresented,
                     allowedContentTypes: [UTType.commaSeparatedText],
@@ -46,27 +42,24 @@ struct TradesView: View {
                 }
                 
                 Button(action: {
-                                showingAddTradeSheet.toggle()
-                            }) {
-                                Text("Add Trade")
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.accentColor)
-                                    .foregroundStyle(Color.black)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                            }
-                            .frame(maxWidth: .infinity)
+                    showingAddTradeSheet.toggle()
+                }) {
+                    Text("Add Trade")
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.accentColor)
+                        .foregroundColor(.black)
+                        .cornerRadius(8)
+                }
             }
             .sheet(isPresented: $showingAddTradeSheet) {
-                        AddTradeView()
-                    }
+                AddTradeView()
+            }
             .padding(.horizontal)
 
-            
-            ForEach(accountManager.getTrades().sorted(by: { $0.tradeDay > $1.tradeDay })) { trade in
-                TradeCell(trade: trade, onDelete: {
-                    //accountManager.deleteTrade(trade)
+            ForEach(accountManager.selectedAccount.tradeGroups.sorted(by: { $0.createdAt > $1.createdAt })) { tradeGroup in
+                TradeCell(tradeGroup: tradeGroup, onDelete: {
+                    accountManager.deleteTradeGroup(tradeGroup)
                 })
                 .padding(.bottom, 10)
             }
@@ -75,33 +68,31 @@ struct TradesView: View {
 }
 
 struct TradeCell: View {
-    let trade: TradeGroup
+    let tradeGroup: TradeGroup
     let onDelete: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text(trade.contractName)
+                Text(tradeGroup.trades.first?.contractName ?? "Unknown Contract")
                     .font(.headline)
                 Spacer()
-                TradeTypeBadge(type: trade.type)
+                TradeTypeBadge(type: tradeGroup.trades.first?.type ?? "Unknown")
                 Button(action: onDelete) {
                     Image(systemName: "trash")
                         .foregroundColor(.red)
                 }
             }
             
-            TradeInfoRow(title: "Entered", value: formattedTime(trade.enteredAt))
-            TradeInfoRow(title: "Exited", value: formattedTime(trade.exitedAt))
-            TradeInfoRow(title: "Entry Price", value: formattedPrice(trade.entryPrice))
-            TradeInfoRow(title: "Exit Price", value: formattedPrice(trade.exitPrice))
-            TradeInfoRow(title: "Size", value: formattedDecimal(trade.totalSize))
-            TradeInfoRow(title: "Fees", value: formattedPrice(trade.totalFees))
-            
             HStack {
-                PnLView(pnl: trade.totalPnL)
+                HStack(spacing: 4) {
+                    Image(systemName: totalProfit >= 0 ? "arrow.up.right" : "arrow.down.right")
+                    Text(String(format: "$%.2f", totalProfit))
+                }
+                .font(.headline)
+                .foregroundColor(totalProfit >= 0 ? .green : .red)
                 Spacer()
-                Text("Trade Day: \(formattedDate(trade.tradeDay))")
+                Text("Created At: \(formattedDate(tradeGroup.createdAt))")
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -111,41 +102,15 @@ struct TradeCell: View {
         .cornerRadius(10)
     }
     
+    private var totalProfit: Double {
+        tradeGroup.trades.reduce(0) { $0 + $1.pnl }
+    }
+    
     private func formattedDate(_ date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .none
         return formatter.string(from: date)
-    }
-    
-    private func formattedTime(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .short
-        return formatter.string(from: date)
-    }
-    
-    private func formattedPrice(_ price: Double) -> String {
-        return String(format: "$%.2f", price)
-    }
-    
-    private func formattedDecimal(_ value: Double) -> String {
-        return String(format: "%.2f", value)
-    }
-}
-
-struct TradeInfoRow: View {
-    let title: String
-    let value: String
-    
-    var body: some View {
-        HStack {
-            Text(title)
-                .foregroundColor(.secondary)
-            Spacer()
-            Text(value)
-                .fontWeight(.medium)
-        }
     }
 }
 
@@ -161,24 +126,6 @@ struct TradeTypeBadge: View {
             .background(type == "Buy" ? Color.green.opacity(0.2) : Color.red.opacity(0.2))
             .foregroundColor(type == "Buy" ? .green : .red)
             .cornerRadius(20)
-    }
-}
-
-struct PnLView: View {
-    let pnl: Double
-    
-    var body: some View {
-        HStack(spacing: 4) {
-            Image(systemName: pnl >= 0 ? "arrow.up.right" : "arrow.down.right")
-            Text(formattedPnL)
-        }
-        .font(.headline)
-        .foregroundColor(pnl >= 0 ? .green : .red)
-    }
-    
-    private var formattedPnL: String {
-        let absValue = abs(pnl)
-        return String(format: "$%.2f", absValue)
     }
 }
 

@@ -10,7 +10,6 @@ import SwiftData
 
 struct SettingsView: View {
     @StateObject private var accountManager = AccountManager.shared
-    @StateObject private var journalManager = JournalManager.shared
     
     @State private var showingAddAccount = false
     @State private var newAccountName = ""
@@ -32,12 +31,6 @@ struct SettingsView: View {
                                     .padding(.vertical, 10)
                             }
                         }
-                    }
-                    
-                    
-                    
-                    Section(header: Text("Options")) {
-                        Toggle("Enable Smart Grouping", isOn: $journalManager.smartTradeGrouper.smartGrouping)
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
@@ -78,7 +71,7 @@ struct AccountRow: View {
             VStack(alignment: .leading) {
                 Text(account.name)
                     .font(.headline)
-                Text("Trades: \(account.trades.count)")
+                Text("Trades: \(account.tradeGroups.count)")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }

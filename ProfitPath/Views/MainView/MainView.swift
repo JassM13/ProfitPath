@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct MainView: View {
     @ObservedObject var navigationController = NavigationController.shared
     @StateObject var accountManager = AccountManager.shared
@@ -70,9 +68,9 @@ struct MainView: View {
                                     CategoryCell(text: "Dashboard", isSelected: navigationController.viewName == "Dashboard")
                                 }
                                 Button(action: {
-                                    navigationController.updateCurrentView(AnyView(JournalView()), viewName: "Journal")
+                                    navigationController.updateCurrentView(AnyView(CalendarView()), viewName: "Calendar")
                                 }) {
-                                    CategoryCell(text: "Journal", isSelected: navigationController.viewName == "Journal")
+                                    CategoryCell(text: "Calendar", isSelected: navigationController.viewName == "Calendar")
                                 }
                                 Button(action: {
                                     navigationController.updateCurrentView(AnyView(TradesView()), viewName: "Trades")
@@ -88,7 +86,6 @@ struct MainView: View {
                         currentView
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else {
-                        Spacer()
                     }
                 }
             }

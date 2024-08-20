@@ -5,15 +5,16 @@
 //  Created by Jaspreet Malak on 7/31/24.
 //
 
-import Foundation
 import SwiftData
+import Foundation
 
 @Model
 class Account {
-    @Attribute(.unique) let id: UUID
+    var id: UUID
     var name: String
-    @Relationship(deleteRule: .cascade) var trades: [Trade] = []
-    @Relationship(deleteRule: .nullify) var linkedBrokerAccount: LinkedBrokerAccount?
+    var tradeGroups: [TradeGroup] = []
+    var journals: [Journal] = []
+    var linkedBrokerAccount: LinkedBrokerAccount?
 
     init(id: UUID = UUID(), name: String) {
         self.id = id

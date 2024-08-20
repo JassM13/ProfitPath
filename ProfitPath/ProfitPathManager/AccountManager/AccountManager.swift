@@ -15,9 +15,6 @@ class AccountManager: ObservableObject {
     private let container: ModelContainer
     private let context: ModelContext
     
-    
-    private let journalManager: JournalManager = JournalManager()
-    
     @Published var accounts: [Account] = []
     @Published var selectedAccount: Account
     
@@ -25,7 +22,7 @@ class AccountManager: ObservableObject {
         do {
             container = {
                 do {
-                    let schema = Schema([Account.self, Trade.self, LinkedBrokerAccount.self, Journal.self])
+                    let schema = Schema([Account.self, TradeGroup.self, Trade.self, LinkedBrokerAccount.self, Journal.self])
                     let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
                     return try ModelContainer(for: schema, configurations: configuration)
                 } catch {
@@ -88,23 +85,36 @@ class AccountManager: ObservableObject {
     }
     
     func addTrade(_ trade: Trade) {
-        selectedAccount.trades.append(trade)
-        context.insert(trade)
+        let newGroup = TradeGroup(trades: [trade])
+        selectedAccount.tradeGroups.append(newGroup)
         saveContext()
     }
     
-    func deleteTrade(_ trade: Trade) {
-        context.delete(trade)
+    func deleteTradeGroup(_ tradeGroup: TradeGroup) {
+        context.delete(tradeGroup)
         saveContext()
     }
     
-    func getTrades() -> [TradeGroup] {
-        let trades = selectedAccount.trades
-        return journalManager.smartTradeGrouper.groupTrades(trades)
+    func createManualTradeGroup(trades: [Trade]) {
+        let newGroup = TradeGroup(trades: trades, isManuallyGrouped: true)
+        selectedAccount.tradeGroups.append(newGroup)
+        
+        // Remove these trades from their original groups
+        for trade in trades {
+            if let originalGroup = selectedAccount.tradeGroups.first(where: { $0.trades.contains(where: { $0.id == trade.id }) }) {
+                originalGroup.trades.removeAll(where: { $0.id == trade.id })
+                if originalGroup.trades.isEmpty {
+                    selectedAccount.tradeGroups.removeAll(where: { $0.id == originalGroup.id })
+                }
+            }
+        }
+        
+        saveContext()
     }
     
-    func linkBrokerAccount(_ brokerAccount: LinkedBrokerAccount) {
-        selectedAccount.linkedBrokerAccount = brokerAccount
+    func addJournalEntryToTradeGroup(group: TradeGroup, content: Data) {
+        let newEntry = JournalEntry(content: content)
+        group.journalEntry = newEntry
         saveContext()
     }
     

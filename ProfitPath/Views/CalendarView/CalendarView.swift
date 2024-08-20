@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct JournalView: View {
+struct CalendarView: View {
     @StateObject private var accountManager = AccountManager.shared
     
     let currentDate = Date()
@@ -200,10 +200,9 @@ struct JournalView: View {
     
     func tradesForDate(_ date: Date) -> [Trade] {
         let calendar = Calendar.current
-        // Filter trades for the specific date
-        return accountManager.selectedAccount.trades.filter { calendar.isDate($0.tradeDay, inSameDayAs: date) }
+        // Flatten the trades from all trade groups and filter by the specific date
+        return accountManager.selectedAccount.tradeGroups.flatMap { $0.trades }.filter { calendar.isDate($0.tradeDay, inSameDayAs: date) }
     }
-    
     
     func dayBackgroundColor(for date: Date, profit: Double, isSelected: Bool) -> Color {
         if isSelected {
@@ -284,8 +283,40 @@ struct JournalView: View {
     func formattedDecimal(_ value: Double) -> String {
         return String(format: "%.2f", value)
     }
+    
+    private struct TradeInfoRow: View {
+        let title: String
+        let value: String
+        
+        var body: some View {
+            HStack {
+                Text(title)
+                    .foregroundColor(.secondary)
+                Spacer()
+                Text(value)
+                    .fontWeight(.medium)
+            }
+        }
+    }
+    
+    private struct PnLView: View {
+        let pnl: Double
+        
+        var body: some View {
+            HStack(spacing: 4) {
+                Image(systemName: pnl >= 0 ? "arrow.up.right" : "arrow.down.right")
+                Text(formattedPnL)
+            }
+            .font(.headline)
+            .foregroundColor(pnl >= 0 ? .green : .red)
+        }
+        
+        private var formattedPnL: String {
+            return String(format: "$%.2f", pnl)
+        }
+    }
 }
 
 #Preview {
-    JournalView()
+    CalendarView()
 }
