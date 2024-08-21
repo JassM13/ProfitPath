@@ -32,11 +32,6 @@ struct ProfitGoalView: View {
                 progressValue = Double(formattedTotalProfit()) ?? 0
             }
         }
-        .onChange(of: accountManager.selectedAccount.tradeGroups) {
-            withAnimation(.linear(duration: 1)) {
-                progressValue = Double(formattedTotalProfit()) ?? 0
-            }
-        }
     }
     
     private func formattedTotalProfit() -> String {

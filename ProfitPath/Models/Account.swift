@@ -5,11 +5,9 @@
 //  Created by Jaspreet Malak on 7/31/24.
 //
 
-import SwiftData
 import Foundation
 
-@Model
-class Account {
+class Account: Identifiable {
     var id: UUID
     var name: String
     var tradeGroups: [TradeGroup] = []

@@ -46,7 +46,7 @@ struct CurvedLineChart: View {
                 // Only the vertical line is kept here
                 Path { path in
                     let touchX = detailManager.touchLocation.x
-                    var topY = 20 // Offset from the top for aesthetic purposes
+                    _ = 20 // Offset from the top for aesthetic purposes
                     let bottomY = frame.height // Extend to the bottom of the frame
                     path.move(to: CGPoint(x: touchX, y: 8))
                     path.addLine(to: CGPoint(x: touchX, y: bottomY - 8))

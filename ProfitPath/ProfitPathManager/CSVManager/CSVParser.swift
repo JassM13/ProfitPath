@@ -47,7 +47,7 @@ class CSVParser {
     
     private static func parseTrade(from columns: [String]) -> Trade? {
         guard
-            let id = columns[0] as String?,
+            let id = UUID(uuidString: columns[0]),
             let enteredAt = DateFormatter.dateAndTimeFormatter.date(from: columns[2]),
             let exitedAt = DateFormatter.dateAndTimeFormatter.date(from: columns[3]),
             let entryPrice = Double(columns[4]),

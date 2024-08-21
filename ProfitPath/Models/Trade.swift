@@ -6,28 +6,29 @@
 //
 
 import Foundation
-import SwiftData
 
-@Model
-class TradeGroup: Identifiable {
-    @Attribute(.unique) var id: String
-    @Relationship(deleteRule: .cascade, inverse: \Trade.tradeGroup) var trades: [Trade] = []
-    @Relationship(deleteRule: .cascade) var journalEntry: JournalEntry?
+class TradeGroup: Identifiable, Equatable {
+    var id: UUID
+    var trades: [Trade] = []
+    var journalEntry: JournalEntry?
     var createdAt: Date
     var isManuallyGrouped: Bool
 
-    init(id: String = UUID().uuidString, trades: [Trade] = [], journalEntry: JournalEntry? = nil, createdAt: Date = Date(), isManuallyGrouped: Bool = false) {
+    init(id: UUID = UUID(), trades: [Trade] = [], journalEntry: JournalEntry? = nil, createdAt: Date = Date(), isManuallyGrouped: Bool = false) {
         self.id = id
         self.trades = trades
         self.journalEntry = journalEntry
         self.createdAt = createdAt
         self.isManuallyGrouped = isManuallyGrouped
     }
+    
+    static func == (lhs: TradeGroup, rhs: TradeGroup) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
-@Model
 class Trade: Identifiable {
-    @Attribute(.unique) var id: String
+    var id: UUID
     var contractName: String
     var enteredAt: Date
     var exitedAt: Date
@@ -42,7 +43,7 @@ class Trade: Identifiable {
     
     var tradeGroup: TradeGroup?
 
-    init(id: String = UUID().uuidString, contractName: String, enteredAt: Date, exitedAt: Date, entryPrice: Double, exitPrice: Double, fees: Double, pnl: Double, size: Double, type: String, instrumentType: String, tradeDay: Date) {
+    init(id: UUID = UUID(), contractName: String, enteredAt: Date, exitedAt: Date, entryPrice: Double, exitPrice: Double, fees: Double, pnl: Double, size: Double, type: String, instrumentType: String, tradeDay: Date) {
         self.id = id
         self.contractName = contractName
         self.enteredAt = enteredAt

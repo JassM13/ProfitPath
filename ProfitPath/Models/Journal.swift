@@ -6,9 +6,7 @@
 //
 
 import Foundation
-import SwiftData
 
-@Model
 class Journal {
     var id: UUID
     var title: String
@@ -22,7 +20,7 @@ class Journal {
     }
 }
 
-@Model
+
 class JournalEntry {
     var id: UUID
     var content: Data

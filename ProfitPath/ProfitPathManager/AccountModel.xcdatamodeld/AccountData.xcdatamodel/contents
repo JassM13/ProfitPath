@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="AccountEntity" representedClassName="AccountEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="journals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="JournalEntity" inverseName="account" inverseEntity="JournalEntity"/>
+        <relationship name="linkedBrokerAccount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LinkedBrokerAccountEntity" inverseName="account" inverseEntity="LinkedBrokerAccountEntity"/>
+        <relationship name="tradeGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TradeGroupEntity" inverseName="account" inverseEntity="TradeGroupEntity"/>
+    </entity>
+    <entity name="JournalEntity" representedClassName="JournalEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="journals" inverseEntity="AccountEntity"/>
+        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="JournalEntryEntity" inverseName="journal" inverseEntity="JournalEntryEntity"/>
+    </entity>
+    <entity name="JournalEntryEntity" representedClassName="JournalEntryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="Binary"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="journal" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="JournalEntity" inverseName="entries" inverseEntity="JournalEntity"/>
+        <relationship name="tradeGroups" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TradeGroupEntity" inverseName="journalEntry" inverseEntity="TradeGroupEntity"/>
+    </entity>
+    <entity name="LinkedBrokerAccountEntity" representedClassName="LinkedBrokerAccountEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="apiKey" optional="YES" attributeType="String"/>
+        <attribute name="brokerName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="linkedBrokerAccount" inverseEntity="AccountEntity"/>
+    </entity>
+    <entity name="TradeEntity" representedClassName="TradeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="contractName" optional="YES" attributeType="String"/>
+        <attribute name="enteredAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="entryPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="exitedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="exitPrice" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fees" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="instrumentType" optional="YES" attributeType="String"/>
+        <attribute name="pnl" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="size" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="tradeDay" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <relationship name="tradeGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TradeGroupEntity" inverseName="trades" inverseEntity="TradeGroupEntity"/>
+    </entity>
+    <entity name="TradeGroupEntity" representedClassName="TradeGroupEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isManuallyGrouped" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="tradeGroups" inverseEntity="AccountEntity"/>
+        <relationship name="journalEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="JournalEntryEntity" inverseName="tradeGroups" inverseEntity="JournalEntryEntity"/>
+        <relationship name="trades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TradeEntity" inverseName="tradeGroup" inverseEntity="TradeEntity"/>
+    </entity>
+</model>

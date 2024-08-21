@@ -13,7 +13,7 @@ struct AddTradeView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var trade = Trade(
-        id: UUID().uuidString,
+        id: UUID(),
         contractName: "",
         enteredAt: Date(),
         exitedAt: Date(),
