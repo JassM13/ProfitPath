@@ -6,15 +6,19 @@
 //
 
 import Foundation
+import SwiftData
 
+@Model
 class LinkedBrokerAccount {
-    let id: UUID
-    var brokerName: String
-    var apiKey: String
+    var id: UUID
+    var apiKey: String?
+    var brokerName: String?
+    @Attribute(.externalStorage)
+    var account: Account?
     
-    init(id: UUID = UUID(), brokerName: String, apiKey: String) {
+    init(id: UUID = UUID(), apiKey: String? = nil, brokerName: String? = nil) {
         self.id = id
-        self.brokerName = brokerName
         self.apiKey = apiKey
+        self.brokerName = brokerName
     }
 }

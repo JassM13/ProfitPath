@@ -9,6 +9,8 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct TradesView: View {
+    @ObservedObject var navigationController = NavigationController.shared
+    
     @StateObject private var accountManager = AccountManager.shared
     @State private var showingAddTradeSheet = false
     @State private var isFileImporterPresented = false
@@ -58,10 +60,14 @@ struct TradesView: View {
             .padding(.horizontal)
 
             ForEach(accountManager.selectedAccount.tradeGroups.sorted(by: { $0.createdAt > $1.createdAt })) { tradeGroup in
-                TradeCell(tradeGroup: tradeGroup, onDelete: {
-                    accountManager.deleteTradeGroup(tradeGroup)
-                })
-                .padding(.bottom, 10)
+                Button(action: {
+                    navigationController.updateCurrentView(AnyView(DetailedTradeView(tradeGroup: tradeGroup)), viewName: "Trades")
+                }) {
+                    TradeCell(tradeGroup: tradeGroup, onDelete: {
+                        accountManager.deleteTradeGroup(tradeGroup)
+                    })
+                    .padding(.bottom, 10)
+                }
             }
         }
     }

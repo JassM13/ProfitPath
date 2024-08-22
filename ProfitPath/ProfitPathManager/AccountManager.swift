@@ -5,46 +5,75 @@
 //  Created by Jaspreet Malak on 8/20/24.
 //
 
+import SwiftData
 import Foundation
-import CoreData
 
 @MainActor
 class AccountManager: ObservableObject {
     static let shared = AccountManager()
     
+    private let container: ModelContainer
+    private let context: ModelContext
+    
     @Published var accounts: [Account] = []
-    @Published var selectedAccount: Account {
-        didSet {
-            // Debugging output to track changes
-            print("Selected account changed:")
-            print("Old account: \(oldValue)")
-            print("New account: \(selectedAccount)")
+    @Published var selectedAccount: Account
+    
+    private init() {
+        do {
+            container = {
+                do {
+                    let schema = Schema([Account.self])
+                    let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+                    return try ModelContainer(for: schema, configurations: configuration)
+                } catch {
+                    fatalError("Error Setting Up Container")
+                }
+            }()
+            context = ModelContext(container)
+            
+            // Initialize accounts and selectedAccount
+            let fetchedAccounts = try context.fetch(FetchDescriptor<Account>(sortBy: [SortDescriptor(\.id)]))
+            if fetchedAccounts.isEmpty {
+                let defaultAccount = Account(name: "Default Account")
+                context.insert(defaultAccount)
+                accounts = [defaultAccount]
+                selectedAccount = defaultAccount
+            } else {
+                accounts = fetchedAccounts
+                selectedAccount = fetchedAccounts[0]
+            }
+            
+        } catch {
+            fatalError("Failed to initialize AccountManager: \(error.localizedDescription)")
         }
     }
     
-    private let accountRepository = AccountRepository.shared
-    
-    private init() {
-            let fetchedAccounts = accountRepository.fetchAccounts()
-            if fetchedAccounts.isEmpty {
-                let defaultAccount = Account(id: UUID(), name: "Default Account")
-                accountRepository.saveAccount(defaultAccount)
-                self.accounts = [defaultAccount]
-                self.selectedAccount = defaultAccount
-            } else {
-                self.accounts = fetchedAccounts
-                self.selectedAccount = fetchedAccounts[0]
-            }
+    func loadAccounts() async throws {
+        let descriptor = FetchDescriptor<Account>(sortBy: [SortDescriptor(\.name)])
+        accounts = try context.fetch(descriptor)
+        if accounts.isEmpty {
+            let defaultAccount = Account(name: "Default Account")
+            context.insert(defaultAccount)
+            accounts = [defaultAccount]
+            selectedAccount = defaultAccount
+        } else if !accounts.contains(where: { $0.id == selectedAccount.id }) {
+            selectedAccount = accounts[0]
         }
+        try context.save()
+    }
     
     func createAccount(name: String) {
-        let newAccount = Account(id: UUID(), name: name)
-        accountRepository.saveAccount(newAccount)
+        let newAccount = Account(name: name)
+        context.insert(newAccount)
         accounts.append(newAccount)
-        objectWillChange.send()
+        saveContext()
     }
     
     func selectAccount(_ account: Account) {
+        guard accounts.contains(where: { $0.id == account.id }) else {
+            print("Attempted to select an account that doesn't exist")
+            return
+        }
         selectedAccount = account
     }
     
@@ -57,61 +86,76 @@ class AccountManager: ObservableObject {
     }
     
     func addTrade(_ trade: Trade) {
-        let newGroup = TradeGroup(trades: [trade])
+        let newGroup = TradeGroup(createdAt: Date(), isManuallyGrouped: false)
+        newGroup.trades = [trade]
+        
         selectedAccount.tradeGroups.append(newGroup)
-        accountRepository.saveAccount(selectedAccount)
-        objectWillChange.send()
+        
+        saveContext()
     }
     
     func deleteTradeGroup(_ tradeGroup: TradeGroup) {
-        if let index = selectedAccount.tradeGroups.firstIndex(where: { $0.id == tradeGroup.id }) {
-            selectedAccount.tradeGroups.remove(at: index)
+        if let account = tradeGroup.account {
+            account.tradeGroups.removeAll(where: { $0.id == tradeGroup.id })
         }
-        accountRepository.saveAccount(selectedAccount)
-        objectWillChange.send()
+        context.delete(tradeGroup)
+        saveContext()
     }
     
-    func createManualTradeGroup(trades: [Trade]) {
-        let newGroup = TradeGroup(trades: trades, isManuallyGrouped: true)
-        selectedAccount.tradeGroups.append(newGroup)
+    func createManualTradeGroup(trades: [Trade], in account: Account) {
+        let newGroup = TradeGroup(createdAt: Date(), isManuallyGrouped: true)
+        newGroup.trades = trades
+        newGroup.account = account
+        
+        account.tradeGroups.append(newGroup)
         
         // Remove these trades from their original groups
         for trade in trades {
-            if let originalGroup = selectedAccount.tradeGroups.first(where: { $0.trades.contains(where: { $0.id == trade.id }) }) {
+            if let originalGroup = account.tradeGroups.first(where: { $0.trades.contains(where: { $0.id == trade.id }) }) {
                 originalGroup.trades.removeAll(where: { $0.id == trade.id })
                 if originalGroup.trades.isEmpty {
-                    selectedAccount.tradeGroups.removeAll(where: { $0.id == originalGroup.id })
+                    account.tradeGroups.removeAll(where: { $0.id == originalGroup.id })
+                    context.delete(originalGroup)
                 }
             }
         }
         
-        accountRepository.saveAccount(selectedAccount)
+        saveContext()
     }
     
     func addJournalEntryToTradeGroup(group: TradeGroup, content: Data) {
         let newEntry = JournalEntry(content: content)
         group.journalEntry = newEntry
-        accountRepository.saveAccount(selectedAccount)
+        saveContext()
     }
     
     func deleteAccount(_ account: Account) {
         guard accounts.count > 1 else {
             print("Cannot delete the last account.")
             createAccount(name: "Default Account")
+            
+            saveContext()
             return deleteAccount()
         }
         
         deleteAccount()
         func deleteAccount() {
-            if let index = accounts.firstIndex(where: { $0.id == account.id }) {
-                accounts.remove(at: index)
-            }
+            accounts.removeAll(where: { $0.id == account.id })
+            context.delete(account)
+            
             if selectedAccount.id == account.id {
-                selectedAccount = accounts.first!
+                selectedAccount = accounts[0]
             }
-            accountRepository.clearAccounts()
-            accounts.forEach { accountRepository.saveAccount($0) }
+            
+            saveContext()
         }
-        objectWillChange.send()
+    }
+    
+    private func saveContext() {
+        do {
+            try context.save()
+        } catch {
+            print("Failed to save context: \(error.localizedDescription)")
+        }
     }
 }

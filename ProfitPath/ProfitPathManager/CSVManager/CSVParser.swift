@@ -65,15 +65,15 @@ class CSVParser {
             id: id,
             contractName: columns[1],
             enteredAt: enteredAt,
+            entryPrice: entryPrice, 
             exitedAt: exitedAt,
-            entryPrice: entryPrice,
             exitPrice: exitPrice,
             fees: fees,
+            instrumentType: "Futures",
             pnl: pnl,
             size: size,
-            type: type,
-            instrumentType: "Futures",
-            tradeDay: tradeDay
+            tradeDay: tradeDay, 
+            type: type
         )
     }
 }

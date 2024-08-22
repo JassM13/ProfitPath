@@ -6,16 +6,24 @@
 //
 
 import Foundation
+import SwiftData
 
-class Account: Identifiable {
+@Model
+class Account {
     var id: UUID
     var name: String
-    var tradeGroups: [TradeGroup] = []
+    @Relationship(deleteRule: .cascade, inverse: \Journal.account)
     var journals: [Journal] = []
+    @Relationship(deleteRule: .cascade, inverse: \LinkedBrokerAccount.account)
     var linkedBrokerAccount: LinkedBrokerAccount?
-
-    init(id: UUID = UUID(), name: String) {
+    @Relationship(deleteRule: .cascade, inverse: \TradeGroup.account)
+    var tradeGroups: [TradeGroup] = []
+    
+    init(id: UUID = UUID(), name: String, journals: [Journal] = [], linkedBrokerAccount: LinkedBrokerAccount? = nil, tradeGroups: [TradeGroup] = []) {
         self.id = id
         self.name = name
+        self.journals = journals
+        self.linkedBrokerAccount = linkedBrokerAccount
+        self.tradeGroups = tradeGroups
     }
 }

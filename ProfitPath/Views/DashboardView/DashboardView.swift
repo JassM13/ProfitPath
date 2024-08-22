@@ -18,7 +18,7 @@ struct DashboardView: View {
     var body: some View {
         ZStack {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 20) {
+                LazyVGrid(columns: columns, spacing: 10) {
                     ForEach(Array(dashboardManager.items.enumerated()), id: \.element.id) { index, item in
                         itemView(for: item)
                             .overlay(editOverlay(for: item, at: index))

@@ -13,6 +13,7 @@
 		C610E7432C745DB90092B309 /* TotalProfitWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C610E7422C745DB90092B309 /* TotalProfitWidget.swift */; };
 		C610E7452C745DF60092B309 /* StatsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C610E7442C745DF60092B309 /* StatsWidget.swift */; };
 		C610E7472C745E100092B309 /* ProfitGoalWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C610E7462C745E100092B309 /* ProfitGoalWidget.swift */; };
+		C61B41752C76BE6F00409557 /* DetailedTradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61B41742C76BE6F00409557 /* DetailedTradeView.swift */; };
 		C61FB0412BB5CDDC00D8141A /* StatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61FB0402BB5CDDC00D8141A /* StatsCell.swift */; };
 		C63E61082C56031A00A8ADE1 /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E61072C56031A00A8ADE1 /* Trade.swift */; };
 		C63E610C2C56039F00A8ADE1 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E610B2C56039F00A8ADE1 /* CSVParser.swift */; };
@@ -31,14 +32,12 @@
 		C6781A512C5A8E920023A859 /* LineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A4D2C5A8E920023A859 /* LineChart.swift */; };
 		C6781A532C5A9C4E0023A859 /* ChartDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A522C5A9C4E0023A859 /* ChartDetailManager.swift */; };
 		C6781A572C5AA3F40023A859 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6781A562C5AA3F40023A859 /* SettingsView.swift */; };
-		C69513232C75933D00A23DA8 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69513222C75933300A23DA8 /* AccountRepository.swift */; };
 		C6A5BF852BAFF544005B68CF /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF842BAFF544005B68CF /* DashboardView.swift */; };
 		C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF872BAFF593005B68CF /* PerformanceView.swift */; };
 		C6A5BF8B2BB0027C005B68CF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8A2BB0027C005B68CF /* CalendarView.swift */; };
 		C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8D2BB0029C005B68CF /* ReportsView.swift */; };
 		C6EBB91F2C6F15A9006192D6 /* AddTradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EBB91E2C6F15A9006192D6 /* AddTradeView.swift */; };
 		C6F4DFDB2C7596B2000640CD /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F4DFDA2C7596B2000640CD /* AccountManager.swift */; };
-		C6F4DFE52C7599A8000640CD /* AccountModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6F4DFE32C7599A8000640CD /* AccountModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +47,7 @@
 		C610E7422C745DB90092B309 /* TotalProfitWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalProfitWidget.swift; sourceTree = "<group>"; };
 		C610E7442C745DF60092B309 /* StatsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsWidget.swift; sourceTree = "<group>"; };
 		C610E7462C745E100092B309 /* ProfitGoalWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitGoalWidget.swift; sourceTree = "<group>"; };
+		C61B41742C76BE6F00409557 /* DetailedTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTradeView.swift; sourceTree = "<group>"; };
 		C61FB0402BB5CDDC00D8141A /* StatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCell.swift; sourceTree = "<group>"; };
 		C63E61072C56031A00A8ADE1 /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
 		C63E610B2C56039F00A8ADE1 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
@@ -68,7 +68,6 @@
 		C6781A4D2C5A8E920023A859 /* LineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineChart.swift; sourceTree = "<group>"; };
 		C6781A522C5A9C4E0023A859 /* ChartDetailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDetailManager.swift; sourceTree = "<group>"; };
 		C6781A562C5AA3F40023A859 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		C69513222C75933300A23DA8 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		C6A5BF842BAFF544005B68CF /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		C6A5BF872BAFF593005B68CF /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		C6A5BF8A2BB0027C005B68CF /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -76,7 +75,6 @@
 		C6EBB91E2C6F15A9006192D6 /* AddTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTradeView.swift; sourceTree = "<group>"; };
 		C6F4DFDA2C7596B2000640CD /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		C6F4DFE22C75983A000640CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		C6F4DFE42C7599A8000640CD /* AccountData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AccountData.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +106,14 @@
 				C610E7462C745E100092B309 /* ProfitGoalWidget.swift */,
 			);
 			path = DashboardWidgets;
+			sourceTree = "<group>";
+		};
+		C61B41732C76BE5600409557 /* DetailedTradeView */ = {
+			isa = PBXGroup;
+			children = (
+				C61B41742C76BE6F00409557 /* DetailedTradeView.swift */,
+			);
+			path = DetailedTradeView;
 			sourceTree = "<group>";
 		};
 		C61FB03F2BB5CDCB00D8141A /* Cells */ = {
@@ -142,9 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				C63E610A2C56037700A8ADE1 /* CSVManager */,
-				C69513222C75933300A23DA8 /* AccountRepository.swift */,
 				C6F4DFDA2C7596B2000640CD /* AccountManager.swift */,
-				C6F4DFE32C7599A8000640CD /* AccountModel.xcdatamodeld */,
 			);
 			path = ProfitPathManager;
 			sourceTree = "<group>";
@@ -191,6 +195,7 @@
 		C64DE0FE2BAFD0C600078997 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C61B41732C76BE5600409557 /* DetailedTradeView */,
 				C6EBB91D2C6F158E006192D6 /* AddTradeView */,
 				C6781A552C5AA3DD0023A859 /* SettingsView */,
 				C63E61112C560E0400A8ADE1 /* TradesView */,
@@ -397,7 +402,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6781A572C5AA3F40023A859 /* SettingsView.swift in Sources */,
-				C69513232C75933D00A23DA8 /* AccountRepository.swift in Sources */,
 				C610E7452C745DF60092B309 /* StatsWidget.swift in Sources */,
 				C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */,
 				C610E7412C745D5D0092B309 /* ChartWidget.swift in Sources */,
@@ -417,10 +421,10 @@
 				C6781A422C5A6EDA0023A859 /* LinkedBrokerAccount.swift in Sources */,
 				C64EA6622C5F3F9F00A6B29E /* Journal.swift in Sources */,
 				C64DE1012BAFD12A00078997 /* OnboardingView.swift in Sources */,
-				C6F4DFE52C7599A8000640CD /* AccountModel.xcdatamodeld in Sources */,
 				C61FB0412BB5CDDC00D8141A /* StatsCell.swift in Sources */,
 				C6781A502C5A8E920023A859 /* CurvedLineChart.swift in Sources */,
 				C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */,
+				C61B41752C76BE6F00409557 /* DetailedTradeView.swift in Sources */,
 				C610E73C2C745CD20092B309 /* DashboardManager.swift in Sources */,
 				C6A5BF882BAFF593005B68CF /* PerformanceView.swift in Sources */,
 				C64DE0EE2BAFCFFA00078997 /* ProfitPathApp.swift in Sources */,
@@ -576,7 +580,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -655,19 +659,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C6F4DFE32C7599A8000640CD /* AccountModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C6F4DFE42C7599A8000640CD /* AccountData.xcdatamodel */,
-			);
-			currentVersion = C6F4DFE42C7599A8000640CD /* AccountData.xcdatamodel */;
-			path = AccountModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C64DE0E22BAFCFFA00078997 /* Project object */;
 }
