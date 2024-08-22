@@ -35,17 +35,15 @@ struct OnboardingView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Button(action: {
-                            self.isMainViewActive = true
-                        }) {
+                        NavigationLink(destination: LoginView()) {
                             HStack {
-                                Text("Start")
+                                Text("Get Started!")
                                     .font(.headline)
-                                    .foregroundColor(.gray)
-                                Image(systemName: "arrow.right") // System image for arrow
+                                    .fontWeight(.bold)
                                     .foregroundColor(.gray)
                             }
                             .padding()
+                            .frame(maxWidth: .infinity)
                             .background(Color.gray.opacity(0.2)) // Your desired background color
                             .cornerRadius(15) // Adjust corner radius as needed
                         }

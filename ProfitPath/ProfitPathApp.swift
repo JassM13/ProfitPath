@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct ProfitPathApp: App {
+    @StateObject private var supabaseManager = SupabaseManager.shared
+    
     var body: some Scene {
         WindowGroup {
-            MainView()
+            if let _ = supabaseManager.currentUser {
+                MainView() // User is logged in
+            } else {
+                OnboardingView() // User is not logged in
+            }
         }
     }
 }

@@ -61,7 +61,11 @@ struct TradesView: View {
 
             ForEach(accountManager.selectedAccount.tradeGroups.sorted(by: { $0.createdAt > $1.createdAt })) { tradeGroup in
                 Button(action: {
-                    navigationController.updateCurrentView(AnyView(DetailedTradeView(tradeGroup: tradeGroup)), viewName: "Trades")
+                    NavigationController.shared.updateCurrentView(
+                        AnyView(DetailedTradeView(tradeGroup: tradeGroup)),
+                        viewName: "Trades",
+                        transition: .slide
+                    )
                 }) {
                     TradeCell(tradeGroup: tradeGroup, onDelete: {
                         accountManager.deleteTradeGroup(tradeGroup)

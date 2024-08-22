@@ -18,6 +18,19 @@
 		C63E61082C56031A00A8ADE1 /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E61072C56031A00A8ADE1 /* Trade.swift */; };
 		C63E610C2C56039F00A8ADE1 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E610B2C56039F00A8ADE1 /* CSVParser.swift */; };
 		C63E61132C560E1800A8ADE1 /* TradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63E61122C560E1800A8ADE1 /* TradesView.swift */; };
+		C63F55352C77B97200AA612B /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = C63F55342C77B97200AA612B /* Auth */; };
+		C63F55372C77B97200AA612B /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = C63F55362C77B97200AA612B /* Functions */; };
+		C63F55392C77B97200AA612B /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = C63F55382C77B97200AA612B /* PostgREST */; };
+		C63F553B2C77B97200AA612B /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = C63F553A2C77B97200AA612B /* Realtime */; };
+		C63F553D2C77B97200AA612B /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = C63F553C2C77B97200AA612B /* Storage */; };
+		C63F55402C77BBEB00AA612B /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = C63F553F2C77BBEB00AA612B /* Supabase */; };
+		C63F55432C77BCF900AA612B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63F55422C77BCF900AA612B /* LoginView.swift */; };
+		C63F55452C77BDE700AA612B /* SupabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63F55442C77BDE700AA612B /* SupabaseManager.swift */; };
+		C63F55472C77BE5200AA612B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63F55462C77BE5200AA612B /* User.swift */; };
+		C63F55492C77CCC200AA612B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63F55482C77CCC200AA612B /* SignUpView.swift */; };
+		C63F554B2C77CD7900AA612B /* AnimationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63F554A2C77CD7900AA612B /* AnimationModifier.swift */; };
+		C63F554E2C77D3C700AA612B /* TradeSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63F554D2C77D3C700AA612B /* TradeSummary.swift */; };
+		C63F55502C77D3EA00AA612B /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63F554F2C77D3EA00AA612B /* JournalEntry.swift */; };
 		C64DE0EE2BAFCFFA00078997 /* ProfitPathApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE0ED2BAFCFFA00078997 /* ProfitPathApp.swift */; };
 		C64DE0F42BAFCFFD00078997 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C64DE0F32BAFCFFD00078997 /* Assets.xcassets */; };
 		C64DE1012BAFD12A00078997 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64DE1002BAFD12A00078997 /* OnboardingView.swift */; };
@@ -52,6 +65,13 @@
 		C63E61072C56031A00A8ADE1 /* Trade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
 		C63E610B2C56039F00A8ADE1 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
 		C63E61122C560E1800A8ADE1 /* TradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradesView.swift; sourceTree = "<group>"; };
+		C63F55422C77BCF900AA612B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C63F55442C77BDE700AA612B /* SupabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseManager.swift; sourceTree = "<group>"; };
+		C63F55462C77BE5200AA612B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C63F55482C77CCC200AA612B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		C63F554A2C77CD7900AA612B /* AnimationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationModifier.swift; sourceTree = "<group>"; };
+		C63F554D2C77D3C700AA612B /* TradeSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeSummary.swift; sourceTree = "<group>"; };
+		C63F554F2C77D3EA00AA612B /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		C64DE0EA2BAFCFFA00078997 /* ProfitPath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProfitPath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64DE0ED2BAFCFFA00078997 /* ProfitPathApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitPathApp.swift; sourceTree = "<group>"; };
 		C64DE0F32BAFCFFD00078997 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,6 +102,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C63F55392C77B97200AA612B /* PostgREST in Frameworks */,
+				C63F55372C77B97200AA612B /* Functions in Frameworks */,
+				C63F55402C77BBEB00AA612B /* Supabase in Frameworks */,
+				C63F55352C77B97200AA612B /* Auth in Frameworks */,
+				C63F553D2C77B97200AA612B /* Storage in Frameworks */,
+				C63F553B2C77B97200AA612B /* Realtime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				C61B41742C76BE6F00409557 /* DetailedTradeView.swift */,
+				C63F554D2C77D3C700AA612B /* TradeSummary.swift */,
+				C63F554F2C77D3EA00AA612B /* JournalEntry.swift */,
 			);
 			path = DetailedTradeView;
 			sourceTree = "<group>";
@@ -132,6 +160,7 @@
 				C6781A412C5A6EDA0023A859 /* LinkedBrokerAccount.swift */,
 				C6781A482C5A8CB80023A859 /* ChartData.swift */,
 				C64EA6612C5F3F9F00A6B29E /* Journal.swift */,
+				C63F55462C77BE5200AA612B /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -149,6 +178,7 @@
 			children = (
 				C63E610A2C56037700A8ADE1 /* CSVManager */,
 				C6F4DFDA2C7596B2000640CD /* AccountManager.swift */,
+				C63F55442C77BDE700AA612B /* SupabaseManager.swift */,
 			);
 			path = ProfitPathManager;
 			sourceTree = "<group>";
@@ -161,11 +191,37 @@
 			path = TradesView;
 			sourceTree = "<group>";
 		};
+		C63F553E2C77BBEB00AA612B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C63F55412C77BCE500AA612B /* AuthView */ = {
+			isa = PBXGroup;
+			children = (
+				C63F554C2C77CD7C00AA612B /* ViewModifiers */,
+				C63F55422C77BCF900AA612B /* LoginView.swift */,
+				C63F55482C77CCC200AA612B /* SignUpView.swift */,
+			);
+			path = AuthView;
+			sourceTree = "<group>";
+		};
+		C63F554C2C77CD7C00AA612B /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				C63F554A2C77CD7900AA612B /* AnimationModifier.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 		C64DE0E12BAFCFFA00078997 = {
 			isa = PBXGroup;
 			children = (
 				C64DE0EC2BAFCFFA00078997 /* ProfitPath */,
 				C64DE0EB2BAFCFFA00078997 /* Products */,
+				C63F553E2C77BBEB00AA612B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -195,6 +251,7 @@
 		C64DE0FE2BAFD0C600078997 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C63F55412C77BCE500AA612B /* AuthView */,
 				C61B41732C76BE5600409557 /* DetailedTradeView */,
 				C6EBB91D2C6F158E006192D6 /* AddTradeView */,
 				C6781A552C5AA3DD0023A859 /* SettingsView */,
@@ -345,6 +402,12 @@
 			);
 			name = ProfitPath;
 			packageProductDependencies = (
+				C63F55342C77B97200AA612B /* Auth */,
+				C63F55362C77B97200AA612B /* Functions */,
+				C63F55382C77B97200AA612B /* PostgREST */,
+				C63F553A2C77B97200AA612B /* Realtime */,
+				C63F553C2C77B97200AA612B /* Storage */,
+				C63F553F2C77BBEB00AA612B /* Supabase */,
 			);
 			productName = ProfitPath;
 			productReference = C64DE0EA2BAFCFFA00078997 /* ProfitPath.app */;
@@ -375,6 +438,7 @@
 			);
 			mainGroup = C64DE0E12BAFCFFA00078997;
 			packageReferences = (
+				C63F55332C77B97200AA612B /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
 			productRefGroup = C64DE0EB2BAFCFFA00078997 /* Products */;
 			projectDirPath = "";
@@ -402,8 +466,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6781A572C5AA3F40023A859 /* SettingsView.swift in Sources */,
+				C63F554B2C77CD7900AA612B /* AnimationModifier.swift in Sources */,
 				C610E7452C745DF60092B309 /* StatsWidget.swift in Sources */,
 				C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */,
+				C63F55502C77D3EA00AA612B /* JournalEntry.swift in Sources */,
 				C610E7412C745D5D0092B309 /* ChartWidget.swift in Sources */,
 				C6F4DFDB2C7596B2000640CD /* AccountManager.swift in Sources */,
 				C63E61132C560E1800A8ADE1 /* TradesView.swift in Sources */,
@@ -413,7 +479,9 @@
 				C6A5BF852BAFF544005B68CF /* DashboardView.swift in Sources */,
 				C6781A512C5A8E920023A859 /* LineChart.swift in Sources */,
 				C6781A402C5A6E450023A859 /* Account.swift in Sources */,
+				C63F55492C77CCC200AA612B /* SignUpView.swift in Sources */,
 				C64DE1042BAFD16B00078997 /* MainView.swift in Sources */,
+				C63F554E2C77D3C700AA612B /* TradeSummary.swift in Sources */,
 				C6EBB91F2C6F15A9006192D6 /* AddTradeView.swift in Sources */,
 				C6A5BF8B2BB0027C005B68CF /* CalendarView.swift in Sources */,
 				C610E7432C745DB90092B309 /* TotalProfitWidget.swift in Sources */,
@@ -423,6 +491,7 @@
 				C64DE1012BAFD12A00078997 /* OnboardingView.swift in Sources */,
 				C61FB0412BB5CDDC00D8141A /* StatsCell.swift in Sources */,
 				C6781A502C5A8E920023A859 /* CurvedLineChart.swift in Sources */,
+				C63F55432C77BCF900AA612B /* LoginView.swift in Sources */,
 				C64DE10C2BAFD1FF00078997 /* CategoryCell.swift in Sources */,
 				C61B41752C76BE6F00409557 /* DetailedTradeView.swift in Sources */,
 				C610E73C2C745CD20092B309 /* DashboardManager.swift in Sources */,
@@ -431,6 +500,8 @@
 				C610E73E2C745D130092B309 /* DashboardModels.swift in Sources */,
 				C63E610C2C56039F00A8ADE1 /* CSVParser.swift in Sources */,
 				C6781A532C5A9C4E0023A859 /* ChartDetailManager.swift in Sources */,
+				C63F55452C77BDE700AA612B /* SupabaseManager.swift in Sources */,
+				C63F55472C77BE5200AA612B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,7 +672,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = ProfitPath/ProfitPath.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ProfitPath/ProfitPathRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -659,6 +730,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C63F55332C77B97200AA612B /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C63F55342C77B97200AA612B /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C63F55332C77B97200AA612B /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		C63F55362C77B97200AA612B /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C63F55332C77B97200AA612B /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		C63F55382C77B97200AA612B /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C63F55332C77B97200AA612B /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		C63F553A2C77B97200AA612B /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C63F55332C77B97200AA612B /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		C63F553C2C77B97200AA612B /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C63F55332C77B97200AA612B /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		C63F553F2C77BBEB00AA612B /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C63F55332C77B97200AA612B /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C64DE0E22BAFCFFA00078997 /* Project object */;
 }

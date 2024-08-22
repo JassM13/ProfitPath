@@ -14,10 +14,32 @@ class NavigationController: ObservableObject {
     @Published var currentView: AnyView? = AnyView(DashboardView())
     @Published var viewName: String? = "Dashboard"
     
+    // Animation properties
+    @Published var isAnimating: Bool = false
+    private var currentAnimation: Animation = .default
+    private var currentTransition: AnyTransition = .opacity
+    
     private init() {}
     
-    func updateCurrentView(_ view: AnyView?, viewName: String? = nil) {
-        currentView = view
-        self.viewName = viewName
+    func updateCurrentView(
+        _ view: AnyView?,
+        viewName: String? = nil,
+        animation: Animation = .default,
+        transition: AnyTransition = .opacity
+    ) {
+        self.currentAnimation = animation
+        self.currentTransition = transition
+        
+        withAnimation(self.currentAnimation) {
+            self.isAnimating = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { // Small delay to ensure animation starts
+            withAnimation(self.currentAnimation) {
+                self.currentView = view
+                self.viewName = viewName
+                self.isAnimating = false
+            }
+        }
     }
 }
