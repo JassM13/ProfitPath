@@ -1,5 +1,5 @@
 //
-//  AccountManager.swift
+//  JournalManager.swift
 //  ProfitPath
 //
 //  Created by Jaspreet Malak on 8/20/24.
@@ -9,8 +9,8 @@ import SwiftData
 import Foundation
 
 @MainActor
-class AccountManager: ObservableObject {
-    static let shared = AccountManager()
+class JournalManager: ObservableObject {
+    static let shared = JournalManager()
     
     private let container: ModelContainer
     private let context: ModelContext

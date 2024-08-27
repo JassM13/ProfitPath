@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  UserData.swift
 //  ProfitPath
 //
 //  Created by Jaspreet Malak on 8/22/24.
@@ -9,15 +9,12 @@ import Foundation
 import SwiftData
 
 @Model
-class User {
+class UserData {
     @Attribute var id: UUID = UUID()
-    @Attribute var email: String
-    @Attribute var hashedPassword: String
-    @Attribute var createdAt: Date = Date()
-    @Attribute var updatedAt: Date = Date()
+    @Attribute var accounts: [Account]
     
-    init(email: String, hashedPassword: String) {
-        self.email = email
-        self.hashedPassword = hashedPassword
+    init(id: UUID = UUID(), accounts: [Account] = []) {
+        self.id = id
+        self.accounts = accounts
     }
 }

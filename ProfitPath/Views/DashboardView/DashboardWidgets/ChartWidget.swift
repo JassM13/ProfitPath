@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ChartView: View {
-    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
     @StateObject private var chartDetailManager = ChartDetailManager.shared
     
     var body: some View {
@@ -18,7 +18,7 @@ struct ChartView: View {
                 .overlay(
                     GeometryReader { geometry in
                         ZStack {
-                            CurvedLineChart(data: dailyProfits(accountManager.selectedAccount.tradeGroups), frame: geometry.frame(in: .local))
+                            CurvedLineChart(data: dailyProfits(journalManager.selectedAccount.tradeGroups), frame: geometry.frame(in: .local))
                                 .frame(width: geometry.size.width, height: geometry.size.height)
                                 .mask(RoundedRectangle(cornerRadius: 8))
                             

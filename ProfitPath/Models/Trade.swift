@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class TradeGroup {
+class TradeGroup: Encodable {
     var id: UUID
     var createdAt: Date
     var isManuallyGrouped: Bool
@@ -26,10 +26,30 @@ class TradeGroup {
         self.isManuallyGrouped = isManuallyGrouped
         self.trades = trades
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case createdAt
+        case isManuallyGrouped
+        case accountID
+        case journalEntryID
+        case trades
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(createdAt, forKey: .createdAt)
+        try container.encode(isManuallyGrouped, forKey: .isManuallyGrouped)
+        try container.encode(account?.id, forKey: .accountID)
+        try container.encode(journalEntry?.id, forKey: .journalEntryID)
+        try container.encode(trades.map { $0.id.uuidString }, forKey: .trades)
+    }
 }
 
+
 @Model
-class Trade {
+class Trade: Encodable {
     var id: UUID
     var instrumentType: String
     var contractName: String
@@ -60,5 +80,38 @@ class Trade {
         self.size = size
         self.tradeDay = tradeDay
         self.type = type
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case instrumentType
+        case contractName
+        case enteredAt
+        case exitedAt
+        case entryPrice
+        case exitPrice
+        case fees
+        case pnl
+        case size
+        case tradeDay
+        case type
+        case tradeGroupID
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(instrumentType, forKey: .instrumentType)
+        try container.encode(contractName, forKey: .contractName)
+        try container.encode(enteredAt, forKey: .enteredAt)
+        try container.encode(exitedAt, forKey: .exitedAt)
+        try container.encode(entryPrice, forKey: .entryPrice)
+        try container.encode(exitPrice, forKey: .exitPrice)
+        try container.encode(fees, forKey: .fees)
+        try container.encode(pnl, forKey: .pnl)
+        try container.encode(size, forKey: .size)
+        try container.encode(tradeDay, forKey: .tradeDay)
+        try container.encode(type, forKey: .type)
+        try container.encode(tradeGroup?.id, forKey: .tradeGroupID)
     }
 }

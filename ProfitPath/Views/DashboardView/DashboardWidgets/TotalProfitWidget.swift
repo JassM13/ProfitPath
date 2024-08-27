@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TotalProfitView: View {
-    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
     @State private var totalProfit: Double = 0.0
     
     var body: some View {
@@ -23,7 +23,7 @@ struct TotalProfitView: View {
                 .onAppear {
                     totalProfit = Double(formattedTotalProfit()) ?? 0
                 }
-                .onChange(of: accountManager.selectedAccount.tradeGroups) {
+                .onChange(of: journalManager.selectedAccount.tradeGroups) {
                     withAnimation(.easeInOut(duration: 1)) {
                         totalProfit = Double(formattedTotalProfit()) ?? 0
                     }
@@ -38,7 +38,7 @@ struct TotalProfitView: View {
     }
     
     private func formattedTotalProfit() -> String {
-        let totalProfit = accountManager.selectedAccount.tradeGroups
+        let totalProfit = journalManager.selectedAccount.tradeGroups
             .flatMap { $0.trades }
             .reduce(0) { $0 + $1.pnl }
         

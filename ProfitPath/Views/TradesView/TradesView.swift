@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 struct TradesView: View {
     @ObservedObject var navigationController = NavigationController.shared
     
-    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
     @State private var showingAddTradeSheet = false
     @State private var isFileImporterPresented = false
     
@@ -36,7 +36,7 @@ struct TradesView: View {
                     switch result {
                     case .success(let urls):
                         if let url = urls.first {
-                            accountManager.importTrades(from: url)
+                            journalManager.importTrades(from: url)
                         }
                     case .failure(let error):
                         print("Failed to import file: \(error.localizedDescription)")
@@ -59,7 +59,7 @@ struct TradesView: View {
             }
             .padding(.horizontal)
 
-            ForEach(accountManager.selectedAccount.tradeGroups.sorted(by: { $0.createdAt > $1.createdAt })) { tradeGroup in
+            ForEach(journalManager.selectedAccount.tradeGroups.sorted(by: { $0.createdAt > $1.createdAt })) { tradeGroup in
                 Button(action: {
                     NavigationController.shared.updateCurrentView(
                         AnyView(DetailedTradeView(tradeGroup: tradeGroup)),
@@ -68,7 +68,7 @@ struct TradesView: View {
                     )
                 }) {
                     TradeCell(tradeGroup: tradeGroup, onDelete: {
-                        accountManager.deleteTradeGroup(tradeGroup)
+                        journalManager.deleteTradeGroup(tradeGroup)
                     })
                     .padding(.bottom, 10)
                 }

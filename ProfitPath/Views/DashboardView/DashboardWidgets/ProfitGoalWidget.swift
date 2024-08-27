@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfitGoalView: View {
-    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
     @State private var progressValue: Double = 0.0
     
     var body: some View {
@@ -35,7 +35,7 @@ struct ProfitGoalView: View {
     }
     
     private func formattedTotalProfit() -> String {
-        let totalProfit = accountManager.selectedAccount.tradeGroups
+        let totalProfit = journalManager.selectedAccount.tradeGroups
             .flatMap { $0.trades } // Flatten trades from all TradeGroups
             .reduce(0) { $0 + $1.pnl } // Sum up the pnl values of all trades
         return String(format: "%.2f", totalProfit) // Format the total profit as a string

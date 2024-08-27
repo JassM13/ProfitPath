@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct SettingsView: View {
-    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
     
     @State private var showingAddAccount = false
     @State private var newAccountName = ""
@@ -21,7 +21,7 @@ struct SettingsView: View {
             VStack {
                 List {
                     Section(header: Text("Accounts")) {
-                        ForEach(accountManager.accounts) { account in
+                        ForEach(journalManager.accounts) { account in
                             AccountRow(account: account)
                         }
                         .onDelete(perform: deleteAccount)
@@ -44,7 +44,7 @@ struct SettingsView: View {
                         message: Text("Are you sure you want to delete this account? This action cannot be undone."),
                         primaryButton: .destructive(Text("Delete")) {
                             if let account = accountToDelete {
-                                accountManager.deleteAccount(account)
+                                journalManager.deleteAccount(account)
                             }
                         },
                         secondaryButton: .cancel()
@@ -55,8 +55,8 @@ struct SettingsView: View {
     }
     
     private func deleteAccount(at offsets: IndexSet) {
-        if let index = offsets.first, accountManager.accounts.count >= 1 {
-            accountToDelete = accountManager.accounts[index]
+        if let index = offsets.first, journalManager.accounts.count >= 1 {
+            accountToDelete = journalManager.accounts[index]
             showingDeleteWarning = true
         }
     }
@@ -64,7 +64,7 @@ struct SettingsView: View {
 
 struct AccountRow: View {
     let account: Account
-    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
     
     var body: some View {
         HStack {
@@ -76,14 +76,14 @@ struct AccountRow: View {
                     .foregroundColor(.secondary)
             }
             Spacer()
-            if account.id == accountManager.selectedAccount.id {
+            if account.id == journalManager.selectedAccount.id {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundColor(.blue)
             }
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            accountManager.selectAccount(account)
+            journalManager.selectAccount(account)
         }
     }
 }
@@ -91,7 +91,7 @@ struct AccountRow: View {
 struct AddAccountView: View {
     @Binding var isPresented: Bool
     @Binding var accountName: String
-    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
     
     var body: some View {
         NavigationView {
@@ -103,7 +103,7 @@ struct AddAccountView: View {
                 Section {
                     Button("Create Account") {
                         if !accountName.isEmpty {
-                            accountManager.createAccount(name: accountName)
+                            journalManager.createAccount(name: accountName)
                             isPresented = false
                             accountName = ""
                         }

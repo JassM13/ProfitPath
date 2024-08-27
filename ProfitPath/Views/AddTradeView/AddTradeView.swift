@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddTradeView: View {
-    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
     @Environment(\.dismiss) private var dismiss
     
     @State private var trade = Trade(
@@ -125,7 +125,7 @@ struct AddTradeView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        accountManager.addTrade(trade)
+                        journalManager.addTrade(trade)
                         dismiss()
                     }
                     .foregroundColor(.blue)

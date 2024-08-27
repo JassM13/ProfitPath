@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StatsView: View {
-    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
     
     var body: some View {
         HStack {
@@ -41,7 +41,7 @@ struct StatsView: View {
     
     private func calculatedWinRate() -> Double {
         // Fetch all trade groups from the selected account
-        let tradeGroups = accountManager.selectedAccount.tradeGroups
+        let tradeGroups = journalManager.selectedAccount.tradeGroups
         
         // Filter groups where at least one trade is a winning trade
         let totalGroups = tradeGroups.count
@@ -57,7 +57,7 @@ struct StatsView: View {
         var profitsByDay: [Date: Double] = [:]
         
         // Fetch all trade groups from the selected account
-        let tradeGroups = accountManager.selectedAccount.tradeGroups
+        let tradeGroups = journalManager.selectedAccount.tradeGroups
         
         for group in tradeGroups {
             let day = Calendar.current.startOfDay(for: group.createdAt)
@@ -72,7 +72,7 @@ struct StatsView: View {
     
     private func calculateRiskRewardRatio() -> Double {
         // Fetch all trade groups from the selected account
-        let tradeGroups = accountManager.selectedAccount.tradeGroups
+        let tradeGroups = journalManager.selectedAccount.tradeGroups
         
         // Flatten the trades from all trade groups
         let trades = tradeGroups.flatMap { $0.trades }

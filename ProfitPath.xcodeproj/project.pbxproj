@@ -50,7 +50,7 @@
 		C6A5BF8B2BB0027C005B68CF /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8A2BB0027C005B68CF /* CalendarView.swift */; };
 		C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A5BF8D2BB0029C005B68CF /* ReportsView.swift */; };
 		C6EBB91F2C6F15A9006192D6 /* AddTradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6EBB91E2C6F15A9006192D6 /* AddTradeView.swift */; };
-		C6F4DFDB2C7596B2000640CD /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F4DFDA2C7596B2000640CD /* AccountManager.swift */; };
+		C6F4DFDB2C7596B2000640CD /* JournalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F4DFDA2C7596B2000640CD /* JournalManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +93,7 @@
 		C6A5BF8A2BB0027C005B68CF /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		C6A5BF8D2BB0029C005B68CF /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
 		C6EBB91E2C6F15A9006192D6 /* AddTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTradeView.swift; sourceTree = "<group>"; };
-		C6F4DFDA2C7596B2000640CD /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		C6F4DFDA2C7596B2000640CD /* JournalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalManager.swift; sourceTree = "<group>"; };
 		C6F4DFE22C75983A000640CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,7 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				C63E610A2C56037700A8ADE1 /* CSVManager */,
-				C6F4DFDA2C7596B2000640CD /* AccountManager.swift */,
+				C6F4DFDA2C7596B2000640CD /* JournalManager.swift */,
 				C63F55442C77BDE700AA612B /* SupabaseManager.swift */,
 			);
 			path = ProfitPathManager;
@@ -471,7 +471,7 @@
 				C6A5BF8E2BB0029C005B68CF /* ReportsView.swift in Sources */,
 				C63F55502C77D3EA00AA612B /* JournalEntry.swift in Sources */,
 				C610E7412C745D5D0092B309 /* ChartWidget.swift in Sources */,
-				C6F4DFDB2C7596B2000640CD /* AccountManager.swift in Sources */,
+				C6F4DFDB2C7596B2000640CD /* JournalManager.swift in Sources */,
 				C63E61132C560E1800A8ADE1 /* TradesView.swift in Sources */,
 				C6781A492C5A8CB80023A859 /* ChartData.swift in Sources */,
 				C63E61082C56031A00A8ADE1 /* Trade.swift in Sources */,

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject var navigationController = NavigationController.shared
-    @StateObject var accountManager = AccountManager.shared
+    @StateObject var journalManager = JournalManager.shared
     
     var body: some View {
         NavigationStack {
@@ -21,22 +21,22 @@ struct MainView: View {
                         .cornerRadius(5)
                     
                     Menu {
-                        ForEach(accountManager.accounts) { account in
+                        ForEach(journalManager.accounts) { account in
                             Button(action: {
-                                accountManager.selectAccount(account)
+                                journalManager.selectAccount(account)
                             }) {
                                 Text(account.name)
                             }
                         }
                         Button(action: {
-                            accountManager.createAccount(name: "New Account \(accountManager.accounts.count + 1)")
+                            journalManager.createAccount(name: "New Account \(journalManager.accounts.count + 1)")
                         }) {
                             Text("New Account")
                                 .fontWeight(.bold)
                         }
                     } label: {
                         HStack {
-                            Text(accountManager.selectedAccount.name)
+                            Text(journalManager.selectedAccount.name)
                                 .fontWeight(.medium)
                                 .font(.system(size: 16)) // Reduced font size
                                 .foregroundColor(.white) // Adjust color as needed

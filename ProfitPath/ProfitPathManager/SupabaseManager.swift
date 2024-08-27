@@ -12,7 +12,7 @@ import Supabase
 class SupabaseManager: ObservableObject {
     static let shared = SupabaseManager()
     
-    private let supabase: SupabaseClient
+    public let supabase: SupabaseClient
     
     @Published var currentUser: Auth.User?
     

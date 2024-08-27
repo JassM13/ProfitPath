@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarView: View {
-    @StateObject private var accountManager = AccountManager.shared
+    @StateObject private var journalManager = JournalManager.shared
     
     let currentDate = Date()
     let calendar = Calendar.current
@@ -201,7 +201,7 @@ struct CalendarView: View {
     func tradesForDate(_ date: Date) -> [Trade] {
         let calendar = Calendar.current
         // Flatten the trades from all trade groups and filter by the specific date
-        return accountManager.selectedAccount.tradeGroups.flatMap { $0.trades }.filter { calendar.isDate($0.tradeDay, inSameDayAs: date) }
+        return journalManager.selectedAccount.tradeGroups.flatMap { $0.trades }.filter { calendar.isDate($0.tradeDay, inSameDayAs: date) }
     }
     
     func dayBackgroundColor(for date: Date, profit: Double, isSelected: Bool) -> Color {
